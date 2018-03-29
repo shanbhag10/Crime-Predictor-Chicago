@@ -46,8 +46,8 @@ def support(coord1,coord2,radius):
 
 
 
-def make_rule(sup,threshold):
-	if sup>threshold:
+def make_rule(sup):
+	if sup>0.05:
 		return True
 	else:
 		return False
@@ -94,7 +94,7 @@ print()
 print('**** POLICE STATION ****')
 arson_police_support,arson_police_near_coords = support(police_coord,arson_coord,2)
 
-if(make_rule(arson_police_support,0.05)):
+if(make_rule(arson_police_support)):
 	rules.append("Police Station -> Arson")
 
 
@@ -108,9 +108,10 @@ print()
 print('**** BARS ****')
 arson_bars_support,arson_bars_near_coords = support(bars_coord,arson_coord,2)
 
-if(make_rule(arson_bars_support,0.05)):
+if(make_rule(arson_bars_support)):
 	rules.append("Bars -> Arson")
 
+print('**** RULES ****')
 
 
 ######### CHURCH ###########
@@ -123,7 +124,7 @@ print()
 print('**** CHURCH ****')
 arson_church_support,arson_church_near_coords = support(church_coord,arson_coord,2)
 
-if(make_rule(arson_church_support,0.05)):
+if(make_rule(arson_church_support)):
 	rules.append("Church -> Arson")
 
 print('**** RULES ****')
