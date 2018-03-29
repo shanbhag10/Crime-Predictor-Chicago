@@ -111,7 +111,6 @@ arson_bars_support,arson_bars_near_coords = support(bars_coord,arson_coord,2)
 if(make_rule(arson_bars_support,0.05)):
 	rules.append("Bars -> Arson")
 
-print('**** RULES ****')
 
 
 ######### CHURCH ###########
