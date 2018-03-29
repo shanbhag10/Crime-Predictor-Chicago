@@ -16,6 +16,43 @@ def haversine(point1, point2):
 
     return d
 
+
+
+def support(coord1,coord2,radius):
+
+	total = len(coord1)*len(coord2)
+	near=0
+	qualified = []
+
+	for a in coord1:
+		for b in coord2:
+			dist = haversine(a,b)
+			if(dist<radius):
+				near+=1	
+				qualified.append((a,b))
+
+	support = near/total
+
+
+	print()
+	print('Support :  ',support)
+	print()
+	print('Near :  ',near)
+	print()
+	print('Total :  ',total)
+	print()
+	#print('qualified : ',coords)
+	return support,qualified
+
+
+
+def make_rule(sup,threshold):
+	if sup>threshold:
+		return True
+	else:
+		return False
+
+
 '''
 
 
@@ -31,7 +68,10 @@ for line in police_station_file:
 #print(police_coord)
 '''
 
-police_station_df = pd.read_csv('police_station_clean.csv',names=['UID', 'Name', 'Desc', 'Zip', 'Lat', 'Long'],skiprows=1)
+rules = []
+
+
+police_station_df = pd.read_csv('police_overlap.csv',names=['UID', 'Name', 'Desc', 'Zip', 'Lat', 'Long'],skiprows=1)
 police_coord = police_station_df[['Lat','Long']].values.tolist()
 
 
@@ -45,18 +85,11 @@ arson_coord = arson_df[['Lat','Long']].values.tolist()
 
 #print(arson_coord)
 
-total_police_arson=0
-near_police_arson=0
-for arson in arson_coord:
-	for police_station in police_coord:
-		total_police_arson+=1
-		dist = haversine(arson,police_station)
-		if(dist<2):
-			near_police_arson+=1
-			print(dist)
 
-print(near_police_arson)
-print(total_police_arson)
+arson_police_support,arson_police_near_coords = support(police_coord,arson_coord,2)
 
-print('Support : ', near_police_arson/total_police_arson)
+if(make_rule(arson_police_support,0.05)):
+	rules.append("Police Station -> Arson")
+
+print(rules)
 
