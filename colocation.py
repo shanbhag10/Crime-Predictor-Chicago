@@ -111,9 +111,6 @@ arson_bars_support,arson_bars_near_coords = support(bars_coord,arson_coord,2)
 if(make_rule(arson_bars_support)):
 	rules.append("Bars -> Arson")
 
-print('**** RULES ****')
-
-
 ######### CHURCH ###########
 church_df = pd.read_csv('church_overlap.csv',names=['a','b','c','d','Lat', 'Long'],skiprows=1)
 church_coord = church_df[['Lat','Long']].values.tolist()
