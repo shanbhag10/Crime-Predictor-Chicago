@@ -20,13 +20,14 @@ def haversine(point1, point2):
 
 def support(coord1,coord2,radius):
 
-	total = len(coord1)*len(coord2)
+	total = 0
 	near=0
 	qualified = []
 
 	for a in coord1:
 		for b in coord2:
 			dist = haversine(a,b)
+			total+=1
 			if(dist<radius):
 				near+=1	
 				qualified.append((a,b))
@@ -47,7 +48,7 @@ def support(coord1,coord2,radius):
 
 
 def make_rule(sup):
-	if sup>0.05:
+	if sup>0.15:
 		return True
 	else:
 		return False
@@ -79,16 +80,17 @@ rules = []
 
 
 arson_df = pd.read_csv('arson.csv',names=['Date','Desc','Lat', 'Long','Loc','Block'],skiprows=1)
-arson_coord = arson_df[['Lat','Long']].values.tolist()
+arson_coord = arson_df[['Lat','Long']].values
 
 
-#print(arson_coord)
+print(arson_coord)
 
 
 ######### POLICE ST ########
 police_station_df = pd.read_csv('police_overlap.csv',names=['UID', 'Name', 'Desc', 'Zip', 'Lat', 'Long'],skiprows=1)
 police_coord = police_station_df[['Lat','Long']].values.tolist()
 
+print('qdasdasdasdasda',police_coord)
 
 print()
 print('**** POLICE STATION ****')
@@ -110,6 +112,8 @@ arson_bars_support,arson_bars_near_coords = support(bars_coord,arson_coord,2)
 
 if(make_rule(arson_bars_support)):
 	rules.append("Bars -> Arson")
+
+
 
 ######### CHURCH ###########
 church_df = pd.read_csv('church_overlap.csv',names=['a','b','c','d','Lat', 'Long'],skiprows=1)
