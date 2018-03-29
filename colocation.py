@@ -71,11 +71,10 @@ for line in police_station_file:
 rules = []
 
 
-police_station_df = pd.read_csv('police_overlap.csv',names=['UID', 'Name', 'Desc', 'Zip', 'Lat', 'Long'],skiprows=1)
-police_coord = police_station_df[['Lat','Long']].values.tolist()
 
 
-#print(police_coord)
+
+
 
 
 
@@ -86,10 +85,49 @@ arson_coord = arson_df[['Lat','Long']].values.tolist()
 #print(arson_coord)
 
 
+######### POLICE ST ########
+police_station_df = pd.read_csv('police_overlap.csv',names=['UID', 'Name', 'Desc', 'Zip', 'Lat', 'Long'],skiprows=1)
+police_coord = police_station_df[['Lat','Long']].values.tolist()
+
+
+print()
+print('**** POLICE STATION ****')
 arson_police_support,arson_police_near_coords = support(police_coord,arson_coord,2)
 
 if(make_rule(arson_police_support,0.05)):
 	rules.append("Police Station -> Arson")
 
+
+######### BARS ###########
+bars_df = pd.read_csv('bars_overlap.csv',names=['a','b','c','d', 'e', 'f', 'g', 'Lat', 'Long'],skiprows=1)
+bars_coord = bars_df[['Lat','Long']].values.tolist()
+
+
+print()
+
+print('**** BARS ****')
+arson_bars_support,arson_bars_near_coords = support(bars_coord,arson_coord,2)
+
+if(make_rule(arson_bars_support,0.05)):
+	rules.append("Bars -> Arson")
+
+print('**** RULES ****')
+
+
+######### CHURCH ###########
+church_df = pd.read_csv('church_overlap.csv',names=['a','b','c','d','Lat', 'Long'],skiprows=1)
+church_coord = church_df[['Lat','Long']].values.tolist()
+
+
+print()
+
+print('**** CHURCH ****')
+arson_church_support,arson_church_near_coords = support(church_coord,arson_coord,2)
+
+if(make_rule(arson_church_support,0.05)):
+	rules.append("Church -> Arson")
+
+print('**** RULES ****')
 print(rules)
+
 
