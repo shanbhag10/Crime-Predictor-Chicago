@@ -1,6 +1,7 @@
 import math
 import pandas as pd
 import numpy as nmp
+import csv
 #import matplotlib.pyplot as plt
 import time
 start = time.time()
@@ -10,6 +11,8 @@ start = time.time()
 rules = []
 
 clist = []
+
+
 
 
 def drange(start, stop, step):
@@ -38,7 +41,13 @@ church_coord = church_df[['Lat','Long']].values.tolist()
 school_df = pd.read_csv('school_overlap.csv',names=['a','b','c','d','Lat', 'Long'],skiprows=1)
 school_coord = school_df[['Lat','Long']].values.tolist()
 
-
+'''
+police_coord.append('POLICE')
+library_coord.append('LIBRARY')
+church_coord.append('CHURCH')
+bars_coord.append('BARS')
+school_coord.append('SCHOOL')
+'''
 arson_coord = ['ARSON']
 assault_coord = ['ASSAULT']
 burglary_coord = ['BURGLARY']
@@ -160,8 +169,10 @@ theft_coord,
 weapons_coord]
 
 
+feature_coord = [police_coord,library_coord,school_coord,church_coord,bars_coord]
+
+
 trans = []
-tot = 0
 
 for a in drange(41.864974,41.952730,0.005):
 	for b in drange(-87.807500, -87.595429,0.005):
@@ -220,7 +231,6 @@ for a in drange(41.864974,41.952730,0.005):
 
 				#print(crimes_coord[ct][0])
 
-
 		for i in police_coord:
 			if (i[0]>=a) and (i[1]>=b) and (i[0]<(a+0.005)) and (i[1]<(b+0.005)):
 				temp.append('SCHOOL')
@@ -252,19 +262,28 @@ for a in drange(41.864974,41.952730,0.005):
 		if(bars>14):
 			temp.append('BARS')		
 
-
+		
 		trans.append(temp)
 
 
 
 
-print(ctr1)
-print(ctr_means)
-
+with open('transactions.csv', "w") as outfile:
+    for entries in trans:
+       	for e in entries:
+            outfile.write(e)
+            outfile.write(", ")
+        outfile.write("\n")
 #for g in ctr_list:
 #	print(nmp.mean(g))	
-for t in trans:
-	print(t)
+#for t in trans:
+#	print(t)
+
+
+
+
+
+
 '''
 plt.plot(sorted(assault_wt))
 plt.show()
@@ -307,5 +326,19 @@ print()
 end = time.time()
 print(end - start)
 
+'''
+		for f in feature_coord:
+			for i in range(0,len(f)-1):
+				if (f[i][0]>=a) and (f[i][1]>=b) and (f[i][0]<(a+0.005)) and (f[i][1]<(b+0.005)):
+					if(f[len(f)-1]=='BARS'):
+						bars+=1
+					else:
+						temp.append(f[len(f)-1])
+						break
 
+
+		if bars>=14:
+			temp.append('BARS')
+
+'''
 
