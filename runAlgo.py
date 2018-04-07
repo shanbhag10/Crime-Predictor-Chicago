@@ -54,7 +54,7 @@ def createFeatureMap(featuresList):
 
 	return featuresMap
 
-
+'''
 def createCrimeMap(featuresList):
 	featuresMap = {}
 	temp = []
@@ -75,7 +75,7 @@ def createCrimeMap(featuresList):
 		
 
 	return featuresMap
-
+'''
 
 def createDistanceMap(featuresMap):
 
