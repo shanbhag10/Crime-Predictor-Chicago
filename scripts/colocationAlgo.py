@@ -10,27 +10,21 @@ import sys
 def mapFeatureFile(featuresList):
     """Map file names to Alphabet for short dictionary keys."""
     fileFeatureMap = {}
-    print('Features --> Shortname')
+    print('\nFeature --> Shortname')
     for num, featureFile in enumerate(featuresList):
         feature = os.path.basename(featureFile).split('.')[0]
         alphabet = chr(65 + num)
         fileFeatureMap[feature] = alphabet
         print('{} --> {}'.format(feature, alphabet))
+    print('\n')
     return fileFeatureMap
 
 
-def havDistance(origin, destination):
+def haversineDistance(origin, destination):
     """Calculate the Haversine distance between two geo co-ordiantes."""
-    lat1, lon1 = origin
-    lat2, lon2 = destination
-
-    lat1 = float(lat1)
-    lat2 = float(lat2)
-    lon1 = float(lon1)
-    lon2 = float(lon2)
-
+    lat1, lon1 = map(float, origin)
+    lat2, lon2 = map(float, destination)
     radius = 3959  # miles
-
     dlat = math.radians(lat2 - lat1)
     dlon = math.radians(lon2 - lon1)
 
@@ -39,7 +33,6 @@ def havDistance(origin, destination):
 
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     d = radius * c
-
     return d
 
 
@@ -50,6 +43,7 @@ def readParams(configFile, outputFile):
         configData = configFileHandle.read().strip()
         featuresList = [filePath.strip() for filePath in configData.split(',')]
         print('Done')
+        print('{} features found'.format(len(featuresList)))
     return featuresList
 
 
@@ -63,7 +57,7 @@ def createFeatureMap(featuresList, fileFeatureMap):
         with open(featureFile, 'r') as featureFileHandle:
             for num, record in enumerate(featureFileHandle):
                 data = record.split(',')
-                featureRecords[str(num + 1)] = [int(data[0]), int(data[1])]
+                featureRecords[str(num + 1)] = [float(data[0]), float(data[1])]
         featuresMap[fileFeatureMap[feature]] = featureRecords
     return featuresMap
 
@@ -93,18 +87,18 @@ def createFeatureMap(featuresList, fileFeatureMap):
 def createDistanceMap(featuresMap):
     """Generate the distance map."""
     distanceMap = {}
-    for k1 in featuresMap:
-        for k2 in featuresMap[k1]:
-            for k3 in range(k1, len(featuresMap)):
-                for k4 in featuresMap[k3]:
-
-                    t1 = featuresMap[k1][k2].split(',')
-                    t2 = featuresMap[k3][k4].split(',')
-
-                    if havDistance(t1, t2) < 1:
-                        distanceMap[(k1, k2, k3, k4)] = havDistance(t1, t2)
-                        print(havDistance(t1, t2))
-
+    for feature1, records1 in featuresMap.items():
+        for id1, coords1 in records1.items():
+            dataPoint1 = feature1 + str(id1)
+            distanceMap[dataPoint1] = set()
+            for feature2, records2 in featuresMap.items():
+                for id2, coords2 in records2.items():
+                    if feature1 == feature2 and id1 == id2:
+                        continue
+                    else:
+                        dist = haversineDistance(coords1, coords2)
+                        if dist < 1:
+                            distanceMap[dataPoint1].add(feature2 + str(id2))
     return distanceMap
 
 
@@ -115,11 +109,9 @@ def main():
         sys.exit(-1)
     configFile = sys.argv[1]
     outputFile = sys.argv[2]
-
     featuresList = readParams(configFile, outputFile)
     fileFeatureMap = mapFeatureFile(featuresList)
     featuresMap = createFeatureMap(featuresList, fileFeatureMap)
-    print(featuresMap)
     distanceMap = createDistanceMap(featuresMap)
     print(distanceMap)
 
