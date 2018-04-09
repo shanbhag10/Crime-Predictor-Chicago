@@ -3,7 +3,20 @@
 """Script to find co-location patterns."""
 
 import math
+import os
 import sys
+
+
+def mapFeatureFile(featuresList):
+    """Map file names to Alphabet for short dictionary keys."""
+    fileFeatureMap = {}
+    print('Features --> Shortname')
+    for num, featureFile in enumerate(featuresList):
+        feature = os.path.basename(featureFile).split('.')[0]
+        alphabet = chr(65 + num)
+        fileFeatureMap[feature] = alphabet
+        print('{} --> {}'.format(feature, alphabet))
+    return fileFeatureMap
 
 
 def havDistance(origin, destination):
@@ -33,8 +46,10 @@ def havDistance(origin, destination):
 def readParams(configFile, outputFile):
     """Read commandline parameters and parse the config file."""
     with open(configFile, 'r') as configFileHandle:
+        print('Reading config file :{}'.format(configFile), end=', ')
         configData = configFileHandle.read().strip()
         featuresList = [filePath.strip() for filePath in configData.split(',')]
+        print('Done')
     return featuresList
 
 
@@ -43,19 +58,18 @@ def createFeatureMap(featuresList):
     featuresMap = {}
     temp = []
 
-    for i in range(len(featuresList)):
-        tem = open(featuresList[i], 'r')
+    for featureFile in featuresList:
+        with open(featureFile, 'r') as featureFileHandle:
+            for t in featureFileHandle:
+                temp.append(t.rstrip(', \n'))
 
-        for t in tem:
-            temp.append(t.rstrip(', \n'))
+            tempMap = {}
+            j = 0
+            for line in temp:
+                tempMap[j] = line
+                j += 1
 
-        tempMap = {}
-        j = 0
-        for line in temp:
-            tempMap[j] = line
-            j += 1
-
-        featuresMap[i] = tempMap
+            featuresMap[i] = tempMap
 
     return featuresMap
 
@@ -102,12 +116,15 @@ def createDistanceMap(featuresMap):
 
 def main():
     """Initialize everything and run the algorithm."""
-    configFile = sys.argv[1]
-    outputFile = sys.argv[2]
-    if not configFile or not outputFile:
+    if len(sys.argv) < 3:
         print('Please pass the parameters <CONFIG_FILE> <OUTPUT_FILE>')
         sys.exit(-1)
-    params = readParams(configFile, outputFile)
+    configFile = sys.argv[1]
+    outputFile = sys.argv[2]
+
+    featuresList = readParams(configFile, outputFile)
+    fileFeatureMap = mapFeatureFile(featuresList)
+    print(fileFeatureMap)
     sys.exit()
     featuresMap = createFeatureMap(params)
     distanceMap = createDistanceMap(featuresMap)
