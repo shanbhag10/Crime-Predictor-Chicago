@@ -90,15 +90,21 @@ def createDistanceMap(featuresMap):
     for feature1, records1 in featuresMap.items():
         for id1, coords1 in records1.items():
             dataPoint1 = feature1 + str(id1)
-            distanceMap[dataPoint1] = set()
+            distanceMap[dataPoint1] = distanceMap.get(dataPoint1, set())
             for feature2, records2 in featuresMap.items():
                 for id2, coords2 in records2.items():
+                    dataPoint2 = feature2 + str(id2)
                     if feature1 == feature2 and id1 == id2:
+                        continue
+                    elif dataPoint2 in distanceMap[dataPoint1]:
                         continue
                     else:
                         dist = haversineDistance(coords1, coords2)
                         if dist < 1:
-                            distanceMap[dataPoint1].add(feature2 + str(id2))
+                            distanceMap[dataPoint1].add(dataPoint2)
+                            tempSet = distanceMap.get(dataPoint2, set())
+                            tempSet.add(dataPoint1)
+                            distanceMap[dataPoint2] = tempSet
     return distanceMap
 
 
@@ -114,6 +120,7 @@ def main():
     featuresMap = createFeatureMap(featuresList, fileFeatureMap)
     distanceMap = createDistanceMap(featuresMap)
     print(distanceMap)
+
 
 if __name__ == "__main__":
     main()
