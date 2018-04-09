@@ -54,11 +54,13 @@ def createFeatureMap(featuresList, fileFeatureMap):
     for featureFile in featuresList:
         feature = os.path.basename(featureFile).split('.')[0]
         featureRecords = {}
+        print('Creating Feature map for {}'.format(feature), end=', ')
         with open(featureFile, 'r') as featureFileHandle:
             for num, record in enumerate(featureFileHandle):
                 data = record.split(',')
                 featureRecords[str(num + 1)] = [float(data[0]), float(data[1])]
         featuresMap[fileFeatureMap[feature]] = featureRecords
+        print('{} records added'.format(num + 1))
     return featuresMap
 
 
@@ -88,6 +90,9 @@ def createDistanceMap(featuresMap):
     """Generate the distance map."""
     distanceMap = {}
     for feature1, records1 in featuresMap.items():
+        print('Mapping distance for feature {}.'.format(feature1))
+        print('Records left')
+        recordCount = len(records1)
         for id1, coords1 in records1.items():
             dataPoint1 = feature1 + str(id1)
             distanceMap[dataPoint1] = distanceMap.get(dataPoint1, set())
@@ -105,6 +110,9 @@ def createDistanceMap(featuresMap):
                             tempSet = distanceMap.get(dataPoint2, set())
                             tempSet.add(dataPoint1)
                             distanceMap[dataPoint2] = tempSet
+            recordCount -= 1
+            if recordCount % 500 == 0:
+                print(str(recordCount))
     return distanceMap
 
 
