@@ -6,6 +6,8 @@ import math
 import os
 import sys
 
+from time import time
+
 
 def mapFeatureFile(featuresList):
     """Map file names to Alphabet for short dictionary keys."""
@@ -93,6 +95,7 @@ def createDistanceMap(featuresMap):
         print('Mapping distance for feature {}.'.format(feature1))
         print('Records left')
         recordCount = len(records1)
+        startTime = time()
         for id1, coords1 in records1.items():
             dataPoint1 = feature1 + str(id1)
             distanceMap[dataPoint1] = distanceMap.get(dataPoint1, set())
@@ -112,7 +115,9 @@ def createDistanceMap(featuresMap):
                             distanceMap[dataPoint2] = tempSet
             recordCount -= 1
             if recordCount % 500 == 0:
-                print(str(recordCount))
+                print('{} Time taken: {}'
+                      .format(recordCount, time() - startTime))
+                startTime = time()
     return distanceMap
 
 
