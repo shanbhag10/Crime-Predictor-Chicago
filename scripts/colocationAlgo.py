@@ -63,7 +63,7 @@ def createFeatureMap(featuresList, fileFeatureMap):
         with open(featureFile, 'r') as featureFileHandle:
             for num, record in enumerate(featureFileHandle):
                 data = record.split(',')
-                featureRecords[num + 1] = [int(data[0]), int(data[1])]
+                featureRecords[str(num + 1)] = [int(data[0]), int(data[1])]
         featuresMap[fileFeatureMap[feature]] = featureRecords
     return featuresMap
 
