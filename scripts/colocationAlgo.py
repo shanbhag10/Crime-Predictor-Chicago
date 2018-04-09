@@ -53,24 +53,18 @@ def readParams(configFile, outputFile):
     return featuresList
 
 
-def createFeatureMap(featuresList):
+def createFeatureMap(featuresList, fileFeatureMap):
     """Generate the features map."""
     featuresMap = {}
-    temp = []
 
     for featureFile in featuresList:
+        feature = os.path.basename(featureFile).split('.')[0]
+        featureRecords = {}
         with open(featureFile, 'r') as featureFileHandle:
-            for t in featureFileHandle:
-                temp.append(t.rstrip(', \n'))
-
-            tempMap = {}
-            j = 0
-            for line in temp:
-                tempMap[j] = line
-                j += 1
-
-            featuresMap[i] = tempMap
-
+            for num, record in enumerate(featureFileHandle):
+                data = record.split(',')
+                featureRecords[num + 1] = [int(data[0]), int(data[1])]
+        featuresMap[fileFeatureMap[feature]] = featureRecords
     return featuresMap
 
 
@@ -124,9 +118,8 @@ def main():
 
     featuresList = readParams(configFile, outputFile)
     fileFeatureMap = mapFeatureFile(featuresList)
-    print(fileFeatureMap)
-    sys.exit()
-    featuresMap = createFeatureMap(params)
+    featuresMap = createFeatureMap(featuresList, fileFeatureMap)
+    print(featuresMap)
     distanceMap = createDistanceMap(featuresMap)
     print(distanceMap)
 
