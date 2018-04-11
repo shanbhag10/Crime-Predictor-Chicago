@@ -16,7 +16,7 @@ def processRawData(paramList):
         colKey = params[3]
         lat = params[4]
         lon = params[5]
-        print('Processing raw file: {}'.format(inName))
+        print('Processing raw file: {}'.format(inName), end=', ')
 
         rawDataFrame = pd.read_csv(inName)
         rawDataFrame.columns = [col.strip() for col in rawDataFrame.columns]
@@ -25,6 +25,8 @@ def processRawData(paramList):
         rawDataFrame = rawDataFrame[[lat, lon]]
         rawDataFrame.to_csv(outName, header=False, index=False)
         outFiles.append(outName)
+        print('Done')
+    return outFiles
 
 
 def readParams(configFile):
@@ -42,8 +44,10 @@ def readParams(configFile):
 
 def generateMainConfigFile(outFiles, outConfig):
     """Generate the Input file for main algorithm."""
-    with open(outConfig) as outConfigHandle:
+    print('Generating main config file: {}'.format(outConfig), end=', ')
+    with open(outConfig, 'w') as outConfigHandle:
         outConfigHandle.write(','.join(outFiles))
+    print('Done')
 
 
 def main():
