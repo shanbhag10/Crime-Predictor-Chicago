@@ -66,28 +66,6 @@ def createFeatureMap(featuresList, fileFeatureMap):
     return featuresMap
 
 
-# def createCrimeMap(featuresList):
-#     """Create the crime map."""
-#     featuresMap = {}
-#     temp = []
-#
-#     for i in range(len(featuresList)):
-#         tem = open(featuresList[i], 'r')
-#
-#         for t in tem:
-#             temp.append(t.rstrip(', \n'))
-#
-#         tempMap = {}
-#         j = 0
-#         for line in temp:
-#             tempMap[j] = line
-#             j += 1
-#
-#         featuresMap[i] = tempMap
-#
-#     return featuresMap
-
-
 def createDistanceMap(featuresMap, distThreshold):
     """Generate the distance map."""
     distanceMap = {}
@@ -119,6 +97,8 @@ def createDistanceMap(featuresMap, distThreshold):
                       .format(recordCount, time() - startTime))
                 startTime = time()
     return distanceMap
+
+# TODO(CORE_ALGO): add the function to run the core algorithm here
 
 
 def main():
