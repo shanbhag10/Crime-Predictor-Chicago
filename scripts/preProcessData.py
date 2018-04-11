@@ -35,8 +35,9 @@ def readParams(configFile):
     with open(configFile, 'r') as configFileHandle:
         print('Reading config file :{}'.format(configFile), end=', ')
         for line in configFileHandle:
-            configData = line.strip().split(',')
-            paramList.append(configData)
+            params = [param.replace('"', '').strip()
+                      for param in line.split(',')]
+            paramList.append(params)
         print('Done')
         print('{} raw files found'.format(len(paramList)))
     return paramList
@@ -60,6 +61,7 @@ def main():
     paramList = readParams(configFile)
     outFiles = processRawData(paramList)
     generateMainConfigFile(outFiles, outConfig)
+
 
 if __name__ == '__main__':
     main()
