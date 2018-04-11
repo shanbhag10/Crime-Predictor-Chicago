@@ -88,7 +88,7 @@ def createFeatureMap(featuresList, fileFeatureMap):
 #     return featuresMap
 
 
-def createDistanceMap(featuresMap):
+def createDistanceMap(featuresMap, distThreshold):
     """Generate the distance map."""
     distanceMap = {}
     for feature1, records1 in featuresMap.items():
@@ -108,7 +108,7 @@ def createDistanceMap(featuresMap):
                         continue
                     else:
                         dist = haversineDistance(coords1, coords2)
-                        if dist < 1:
+                        if dist < distThreshold:
                             distanceMap[dataPoint1].add(dataPoint2)
                             tempSet = distanceMap.get(dataPoint2, set())
                             tempSet.add(dataPoint1)
@@ -128,10 +128,14 @@ def main():
         sys.exit(-1)
     configFile = sys.argv[1]
     outputFile = sys.argv[2]
+
+    # Value that determines the neighbor relation
+    distThreshold = 0.5
+
     featuresList = readParams(configFile, outputFile)
     fileFeatureMap = mapFeatureFile(featuresList)
     featuresMap = createFeatureMap(featuresList, fileFeatureMap)
-    distanceMap = createDistanceMap(featuresMap)
+    distanceMap = createDistanceMap(featuresMap, distThreshold)
     print(distanceMap)
 
 
