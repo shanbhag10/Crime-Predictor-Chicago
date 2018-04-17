@@ -1,10 +1,6 @@
-#!/usr/local/bin/python3
-
-"""Script to process the raw files and Generate input files for algorithm."""
-
-import pandas as pd
-import sys
 import os
+import pandas as pd
+
 
 
 def readParams(configFile):
@@ -70,36 +66,12 @@ def processRawData(outFileName, paramList):
     rawDataFrame1 = rawDataFrame1[['INSTANCE','LATITUDE','LONGITUDE','FEATURE']]
     print(rawDataFrame1)
   
-    print(outFileName)
+
     
     #print(a)
     rawDataFrame1.to_csv(outFileName,header=False, index=False)    
     print('Done')
 
-    return outFileName
-
-
-
-def generateMainConfigFile(outputFeatures, outConfig):
-    """Generate the Input file for main algorithm."""
-    print('Generating main config file: {}'.format(outConfig), end=', ')
-    outConfigHandle = open(outConfig, 'w')
-    outConfigHandle.write(outputFeatures)
-    print('Done')
-
-
-def main():
-    """Initialize everything and run the algorithm."""
-    if len(sys.argv) < 3:
-        print('Please pass the parameters <CONFIG_FILE> <OUT_CONFIG>')
-        sys.exit(-1)
-    configFile = sys.argv[1]
-    outConfig = sys.argv[2]
-    outFile = readParams(configFile)[0]
-    paramList = readParams(configFile)[1]
-    features = processRawData(outFile,paramList)
-    generateMainConfigFile(features, outConfig)
-
-
-if __name__ == '__main__':
-    main()
+a = readParams("../config/preprocess_all.config")
+processRawData(a[0],a[1])
+    
