@@ -28,13 +28,14 @@ currLong = None
 
 tableList = []
 
+
 class Table:
     # newId = itertools.count().next
-    def __init__(self,colocationName,record):
+    def __init__(self, colocationName, record):
         self.prevalence = True
         self.name = colocationName
         # self.id = Table.newId()
-        self.record = record # DataFrame
+        self.record = record  # DataFrame
         self.participation_index = 1
 
     def set_participation_index(self, participation_index, prevalence_threshold):
@@ -120,9 +121,10 @@ def createColocationMap(featuresMap):
     features = [_ for _ in fileFeatureMap.values()]
     featureCount = len(features)
 
+    executor = futures.ThreadPoolExecutor(max_workers=20)
+
     for idx1 in range(featureCount):
         currFeature = features[idx1]
-        print('Generating colocation table for {}*'.format(currFeature))
 
         # Current feature records
         cR = mainDataFrame[mainDataFrame['feature'] == currFeature]
@@ -130,13 +132,19 @@ def createColocationMap(featuresMap):
         for idx2 in range(idx1 + 1, featureCount):
             # Other feature records
             otherFeature = features[idx2]
+            print('Generating colocation table for {}{}'.format(currFeature, otherFeature))
             oR = mainDataFrame[mainDataFrame['feature'] == otherFeature]
             copyOR = oR
             tempRowInsts = []
+
+            start = time()
+            processed = 0
+            recCount = len(cR.index)
+
             for _, row in cR.iterrows():
                 currLat, currLong = row['lat'], row['long']
                 index = row['transaction_id']
-                #print('{} {}'.format(index, len(oR.index)), end=', ')
+                # print('{} {}'.format(index, len(oR.index)), end=', ')
                 latUp = row['lat'] + 0.00725
                 latLow = row['lat'] - 0.00725
                 longUp = row['long'] + 0.00725
@@ -147,29 +155,39 @@ def createColocationMap(featuresMap):
                 oR = oR[(oR['long'] > longLow)]
                 oR = oR[(oR['lat'] > longUp)]
 
-                #print('{}'.format(len(oR.index)))
+                # print('{}'.format(len(oR.index)))
 
                 if len(oR.index) == 0:
+                    processed += 1
+                    if processed % 500 == 0 or processed == recCount:
+                        end = time() - start
+                        print('{} {} {}'.format(processed, end,
+                                                   recCount - processed))
+                        start = time()
                     continue
-                start = time()
+
                 destinationCoords = oR[['lat', 'long']].values.tolist()
-                executor = futures.ThreadPoolExecutor(max_workers=8)
                 results = executor.map(haversineDistance, destinationCoords)
-                print('time taken: {}'.format(time()-start))
+
                 for idx, res in enumerate(results):
                     if res:
-                        tempRowInsts.append([index, oR.iloc[idx]['transaction_id']])
+                        tempRowInsts.append(
+                            [index, oR.iloc[idx]['transaction_id']])
                 oR = copyOR
 
-            colocationTable = Table(currFeature + otherFeature, pd.DataFrame(tempRowInsts))
+                processed += 1
+                if processed % 500 == 0 or processed == recCount:
+                    end = time() - start
+                    print('{} {} {}'.format(processed, end,
+                                               recCount - processed))
+                    start = time()
+
+            colocationTable = Table(
+                currFeature + otherFeature, pd.DataFrame(tempRowInsts))
             colocationMap[2].append(colocationTable)
-            # print(colocationTable.name)
-            # print(colocationTable.record)
 
         # records = mainDataFrame[(mainDataFrame['feature'] != features[idx1]) & (mainDataFrame['lat'] = )]
         # for records in range(idx1 + 1, featureCount):
-
-
 
     # distanceMap = {}
     # for feature1, records1 in featuresMap.items():
@@ -202,7 +220,6 @@ def createColocationMap(featuresMap):
     # return distanceMap
 
 
-
 # # TODO(CORE_ALGO): add the function to run the core algorithm here
 # def longest_common_substring(string1, string2):
 #     result = ""
@@ -227,7 +244,6 @@ def createColocationMap(featuresMap):
 #     return size == len(coLocationName)
 
 
-
 # def joinTables(tableA, tableB):
 #     name = tableA.name + tableB.name
 #     coLocationName = ''.join(sorted(set(name)))
@@ -246,7 +262,6 @@ def createColocationMap(featuresMap):
 #             if isValidCandidate(prunedTables[i],prunedTables[j], size + 1):
 #                 joinT = joinTables(prunedTables[i],prunedTables[j])
 #                 tableInstances[size].append(joinT)
-
 
 
 # def calculatePrevalence(size, prevalence_threshold):
@@ -303,8 +318,6 @@ def createColocationMap(featuresMap):
 #             break
 
 
-
-
 def main():
     """Initialize everything and run the algorithm."""
     global distThreshold
@@ -327,8 +340,8 @@ def main():
 
     # df =
     #colocationMinerAlgo(df, 0.5)
-    #print(featuresMap)
-    #print(distanceMap)
+    # print(featuresMap)
+    # print(distanceMap)
 
 
 if __name__ == "__main__":
