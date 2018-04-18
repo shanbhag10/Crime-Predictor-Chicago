@@ -33,8 +33,8 @@ class Table:
     def __init__(self,colocationName,record):
         self.prevalence = True
         self.name = colocationName
-        self.id = Table.newId()
-        self.record = record
+        # self.id = Table.newId()
+        self.record = record # DataFrame
         self.participation_index = 1
 
     def set_participation_index(self, participation_index, prevalence_threshold):
@@ -70,7 +70,8 @@ def loadMainDataFrame(featuresFile):
 
     # Add column name
     columns = ['transaction_id', 'lat', 'long', 'feature']
-    mainDataFrame = pd.read_csv(featuresFile, index_col=0, names=columns)
+    #mainDataFrame = pd.read_csv(featuresFile, index_col=0, names=columns)
+    mainDataFrame = pd.read_csv(featuresFile, names=columns)
     featuresList = set(mainDataFrame['feature'])
 
     # Map features
@@ -91,7 +92,7 @@ def haversineDistance(destination):
     global currLong
     lat1, lon1 = currLat, currLong
     lat2, lon2 = map(float, destination)
-    print(lat1, lon1, lat2, lon2)
+    #print(lat1, lon1, lat2, lon2)
     radius = 3959  # miles
     dlat = math.radians(lat2 - lat1)
     dlon = math.radians(lon2 - lon1)
@@ -112,6 +113,9 @@ def createColocationMap(featuresMap):
     """Generate the distance map."""
     global currLat
     global currLong
+    global colocationMap
+
+    colocationMap[2] = []
 
     features = [_ for _ in fileFeatureMap.values()]
     featureCount = len(features)
@@ -123,39 +127,44 @@ def createColocationMap(featuresMap):
         # Current feature records
         cR = mainDataFrame[mainDataFrame['feature'] == currFeature]
 
-        for idx2 in range(idx1, featureCount):
+        for idx2 in range(idx1 + 1, featureCount):
             # Other feature records
             otherFeature = features[idx2]
             oR = mainDataFrame[mainDataFrame['feature'] == otherFeature]
             copyOR = oR
-
-            for index, row in cR.iterrows():
+            tempRowInsts = []
+            for _, row in cR.iterrows():
                 currLat, currLong = row['lat'], row['long']
-                print('{} {}'.format(index, len(oR.index)), end=', ')
-                latUp = row['lat'] + 0.0005
-                latLow = row['lat'] - 0.0005
-                longUp = row['long'] + 0.0005
-                longLow = row['long'] - 0.0005
+                index = row['transaction_id']
+                #print('{} {}'.format(index, len(oR.index)), end=', ')
+                latUp = row['lat'] + 0.00725
+                latLow = row['lat'] - 0.00725
+                longUp = row['long'] + 0.00725
+                longLow = row['long'] - 0.00725
 
                 oR = oR[(oR['lat'] < latUp)]
                 oR = oR[(oR['lat'] > latLow)]
                 oR = oR[(oR['long'] > longLow)]
                 oR = oR[(oR['lat'] > longUp)]
 
-                print('{}'.format(len(oR.index)))
+                #print('{}'.format(len(oR.index)))
 
+                if len(oR.index) == 0:
+                    continue
+                start = time()
                 destinationCoords = oR[['lat', 'long']].values.tolist()
-                executor = futures.ThreadPoolExecutor(max_workers=4)
+                executor = futures.ThreadPoolExecutor(max_workers=8)
                 results = executor.map(haversineDistance, destinationCoords)
-
-                tempRowInsts = ()
-
+                print('time taken: {}'.format(time()-start))
                 for idx, res in enumerate(results):
                     if res:
-                        tempRowInsts.add((index,
-                                         oR.iloc[idx]['transaction_id']))
-
+                        tempRowInsts.append([index, oR.iloc[idx]['transaction_id']])
                 oR = copyOR
+
+            colocationTable = Table(currFeature + otherFeature, pd.DataFrame(tempRowInsts))
+            colocationMap[2].append(colocationTable)
+            # print(colocationTable.name)
+            # print(colocationTable.record)
 
         # records = mainDataFrame[(mainDataFrame['feature'] != features[idx1]) & (mainDataFrame['lat'] = )]
         # for records in range(idx1 + 1, featureCount):
@@ -312,14 +321,14 @@ def main():
 
     featuresFile = readParams(configFile, outputFile)
     loadMainDataFrame(featuresFile)
-    colocationMap = createColocationMap(fileFeatureMap)
-
+    createColocationMap(fileFeatureMap)
+    print(colocationMap)
     # candidateFeatures.append(featuresMap.keys())
 
     # df =
-    colocationMinerAlgo(df, 0.5)
-    print(featuresMap)
-    print(distanceMap)
+    #colocationMinerAlgo(df, 0.5)
+    #print(featuresMap)
+    #print(distanceMap)
 
 
 if __name__ == "__main__":
