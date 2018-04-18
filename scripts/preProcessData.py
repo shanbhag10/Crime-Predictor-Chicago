@@ -1,10 +1,9 @@
 #!/usr/local/bin/python3
 
 """Script to process the raw files and Generate input files for algorithm."""
-
+import os
 import pandas as pd
 import sys
-import os
 
 
 def readParams(configFile):
@@ -28,7 +27,6 @@ def readParams(configFile):
         print('Done')
         print('{} raw files found'.format(len(paramList)))
     return outFile, paramList
-
 
 
 def processRawData(outFileName, paramList):
@@ -61,18 +59,10 @@ def processRawData(outFileName, paramList):
         rawDataFrame.rename(columns={lat:'LATITUDE',lon:'LONGITUDE'},inplace = True)
         rawDataFrame['FEATURE'] = featureName
         rawDataFrame['INSTANCE'] = range(len(rawDataFrame1)+1,len(rawDataFrame1)+len(rawDataFrame)+1)
-        
-
         rawDataFrame1= rawDataFrame1.append(rawDataFrame)
 
+	rawDataFrame1 = rawDataFrame1[['INSTANCE','LATITUDE','LONGITUDE','FEATURE']]
 
-
-    rawDataFrame1 = rawDataFrame1[['INSTANCE','LATITUDE','LONGITUDE','FEATURE']]
-    print(rawDataFrame1)
-  
-    print(outFileName)
-    
-    #print(a)
     rawDataFrame1.to_csv(outFileName,header=False, index=False)    
     print('Done')
 
