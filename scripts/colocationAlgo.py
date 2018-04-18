@@ -101,7 +101,11 @@ def haversineDistance(destination):
 
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     d = radius * c
-    return d
+
+    if d < distThreshold:
+        return True
+    else:
+        return False
 
 
 def createColocationMap(featuresMap):
@@ -118,32 +122,40 @@ def createColocationMap(featuresMap):
 
         # Current feature records
         cR = mainDataFrame[mainDataFrame['feature'] == currFeature]
-        # Other feature records
-        oR = mainDataFrame[mainDataFrame['feature'] != currFeature]
-        copyOR = oR
 
-        for index, row in cR.iterrows():
-            currLat, currLong = row['lat'], row['long']
-            print('{} {}'.format(index, len(oR.index)), end=', ')
-            latUp = row['lat'] + 0.0005
-            latLow = row['lat'] - 0.0005
-            longUp = row['long'] + 0.0005
-            longLow = row['long'] - 0.0005
+        for idx2 in range(idx1, featureCount):
+            # Other feature records
+            otherFeature = features[idx2]
+            oR = mainDataFrame[mainDataFrame['feature'] == otherFeature]
+            copyOR = oR
 
-            oR = oR[(oR['lat'] < latUp)]
-            oR = oR[(oR['lat'] > latLow)]
-            oR = oR[(oR['long'] > longLow)]
-            oR = oR[(oR['lat'] > longUp)]
+            for index, row in cR.iterrows():
+                currLat, currLong = row['lat'], row['long']
+                print('{} {}'.format(index, len(oR.index)), end=', ')
+                latUp = row['lat'] + 0.0005
+                latLow = row['lat'] - 0.0005
+                longUp = row['long'] + 0.0005
+                longLow = row['long'] - 0.0005
 
-            print('{}'.format(len(oR.index)))
+                oR = oR[(oR['lat'] < latUp)]
+                oR = oR[(oR['lat'] > latLow)]
+                oR = oR[(oR['long'] > longLow)]
+                oR = oR[(oR['lat'] > longUp)]
 
-            destinationCoords = oR[['lat', 'long']].values.tolist()
-            executor = futures.ThreadPoolExecutor(max_workers=4)
-            results = executor.map(haversineDistance, destinationCoords)
-            for res in results:
-                print(res)
+                print('{}'.format(len(oR.index)))
 
-            oR = copyOR
+                destinationCoords = oR[['lat', 'long']].values.tolist()
+                executor = futures.ThreadPoolExecutor(max_workers=4)
+                results = executor.map(haversineDistance, destinationCoords)
+
+                tempRowInsts = ()
+
+                for idx, res in enumerate(results):
+                    if res:
+                        tempRowInsts.add((index,
+                                         oR.iloc[idx]['transaction_id']))
+
+                oR = copyOR
 
         # records = mainDataFrame[(mainDataFrame['feature'] != features[idx1]) & (mainDataFrame['lat'] = )]
         # for records in range(idx1 + 1, featureCount):
