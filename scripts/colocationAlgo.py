@@ -7,11 +7,15 @@ import os
 import pandas as pd
 import sys
 import threading
+import numpy as np
+import pickle
 
 
 from collections import OrderedDict
 from concurrent import futures
 from time import time
+from tabulate import tabulate
+from difflib import SequenceMatcher
 
 
 mainDataFrame = None
@@ -42,6 +46,15 @@ class Table:
         self.participation_index = participation_index
         if participation_index < prevalence_threshold:
             self.prevalence = False
+
+    def __str__(self):
+        return 'Name :{}, Record: {}'.format(self.name, tabulate(self.record, headers='keys', tablefmt='psql'))
+        
+
+
+    __repr__ = __str__
+
+
 
 
 def readParams(configFile, outputFile):
@@ -183,7 +196,7 @@ def createColocationMap(featuresMap):
                     start = time()
 
             colocationTable = Table(
-                currFeature + otherFeature, pd.DataFrame(tempRowInsts))
+                currFeature + otherFeature, pd.DataFrame(tempRowInsts, columns = [currFeature, otherFeature]))
             colocationMap[2].append(colocationTable)
 
         # records = mainDataFrame[(mainDataFrame['feature'] != features[idx1]) & (mainDataFrame['lat'] = )]
@@ -221,101 +234,158 @@ def createColocationMap(featuresMap):
 
 
 # # TODO(CORE_ALGO): add the function to run the core algorithm here
-# def longest_common_substring(string1, string2):
-#     result = ""
-#     len1, len2 = len(string1), len(string2)
-#     for i in range(len1):
-#         match = ""
-#         for j in range(len2):
-#             if (i + j < len1 and string1[i + j] == string2[j]):
-#                 match += string2[j]
-#             else:
-#                 if (len(match) > len(result)): result = match
-#                 match = ""
-#     return result
-#
-#
-#
-#
-#
-# def isValidCandidate(tableA, tableB,size):
-#     name = tableA.name + tableB.name
-#     coLocationName = ''.join(set(name))
-#     return size == len(coLocationName)
+def longest_common_substring(string1, string2): 
+    # result = ""
+    # len1, len2 = len(string1), len(string2)
+    # for i in range(len1):
+    #     match = ""
+    #     for j in range(len2):
+    #         if (i + j < len1 and string1[i + j] == string2[j]):
+    #             match += string2[j]
+    #         else:
+    #             if (len(match) > len(result)): result = match
+    #             match = ""
+    # return result
+    m = len(string1)
+    n = len(string2)
+
+    L = [[0 for x in range(n+1)] for x in range(m+1)]
+ 
+    # Following steps build L[m+1][n+1] in bottom up fashion. Note
+    # that L[i][j] contains length of LCS of X[0..i-1] and Y[0..j-1] 
+    for i in range(m+1):
+        for j in range(n+1):
+            if i == 0 or j == 0:
+                L[i][j] = 0
+            elif string1[i-1] == string2[j-1]:
+                L[i][j] = L[i-1][j-1] + 1
+            else:
+                L[i][j] = max(L[i-1][j], L[i][j-1])
+ 
+    # Following code is used to print LCS
+    index = L[m][n]
+ 
+    # Create a character array to store the lcs string
+    lcs = [""] * (index+1)
+    lcs[index] = ""
+ 
+    # Start from the right-most-bottom-most corner and
+    # one by one store characters in lcs[]
+    i = m
+    j = n
+    while i > 0 and j > 0:
+ 
+        # If current character in X[] and Y are same, then
+        # current character is part of LCS
+        if string1[i-1] == string2[j-1]:
+            lcs[index-1] = string1[i-1]
+            i-=1
+            j-=1
+            index-=1
+ 
+        # If not same, then find the larger of two and
+        # go in the direction of larger value
+        elif L[i-1][j] > L[i][j-1]:
+            i-=1
+        else:
+            j-=1
+ 
+    return "".join(lcs)
 
 
-# def joinTables(tableA, tableB):
-#     name = tableA.name + tableB.name
-#     coLocationName = ''.join(sorted(set(name)))
-#     commonFeatures = longest_common_substring(tableA.name, tableB.name)
-#     records = pd.merge(tableA.records, tableB.records, how='inner', on= list(commonFeatures))
-#     table = Table(coLocationName, records)
-#     return table
-#
-#
-#
-# def createCandidates(size):
-#     prunedTables = [instance for instance in tableInstances[size-1] if instance.prevalence == True]
-#     tableInstances.append([])
-#     for i in range(0,len(prunedTables)-1):
-#         for j in range(i+1,len(prunedTables)):
-#             if isValidCandidate(prunedTables[i],prunedTables[j], size + 1):
-#                 joinT = joinTables(prunedTables[i],prunedTables[j])
-#                 tableInstances[size].append(joinT)
 
 
-# def calculatePrevalence(size, prevalence_threshold):
-#     for i in range(0, tableInstances[size]):
-#         features = tableInstances[size][i].columns.values.tolist()
-#         number_of_instances = [len(np.unique(tableInstances[size][i][f].values)) for f in features]
-#         participation_ratios = [ float(number_of_instances)/total_num_instances[f] for index, f in enumerate(features)]
-#         participation_index = min(participation_ratios)
-#         tableInstances[size][i].set_particpation_index(participation_index, prevalence_threshold)
-#
-#
-# def initializeColocation(df):
-#     initial_tables_1 = []
-#     for feature in featuresMap:
-#         transactionIds = df['transaction_id'][df['feature'] == featuresMap[feature]].values
-#         total_num_instances[feature] = len(transactionIds)
-#         records = pd.DataFrame(data = transactionIds, columns= [feature])
-#         table = Table(feature, records)
-#         initial_tables_1.append(table)
-#
-#     tableInstances.append(initial_tables_1)
-#
-#     initial_tables_2 = []
-#     sorted_features = sorted(featuresMap.keys())
-#     for i in range(0,len(sorted_features) -1):
-#         for j in range(i+1, len(sorted_features)):
-#             transactionIds_1 = df['transaction_id'][df['feature'] == featuresMap[sorted_features[i]]].values
-#             transactionIds_2 = df['transaction_id'][df['feature'] == featuresMap[sorted_features[j]]].values
-#             records = pd.DataFrame(data = list(zip(transactionIds_1, transactionIds_2)), columns= list(zip(sorted_features[i], sorted_features[])))
-#             feature = sorted_features[i] + sorted_features[j]
-#             table = Table(feature, records)
-#             initial_tables_2.append(table)
-#     tableInstances.append(initial_tables_2)
-#     calculatePrevalence(2)
-#
-#
-#
-# def generateColocationRules(size):
-#     for i in range(0,len(tableInstances[size])):
-#         if tableInstances[size][i].prevalence:
-#             colocationRules.append(tableInstances[size][i].name)
+
+def isValidCandidate(tableA, tableB,size):
+    name = tableA.name + tableB.name
+    coLocationName = ''.join(set(name))
+    return size == len(coLocationName)
 
 
-#
-# def colocationMinerAlgo(df, prevalence_threshold):
-#     initializeColocation(df)
-#     previousColocation = True
-#     for k in range(3, len(featuresMap)):
-#         if previousColocation:
-#             createCandidates(k-1)
-#             calculatePrevalence(k-1, prevalence_threshold)
-#             generateColocationRules(k-1)
-#         else:
-#             break
+def joinTables(tableA, tableB):
+    name = tableA.name + tableB.name
+    coLocationName = ''.join(sorted(set(name)))
+    print('Joining {} and {} : New Colocation:{}'.format(tableA.name, tableB.name, coLocationName))
+    commonFeatures = longest_common_substring(tableA.name, tableB.name)
+    if len(commonFeatures) > 1:
+        commonFeatures = list(commonFeatures)
+    print(commonFeatures)
+    records = pd.merge(tableA.record, tableB.record, how='inner', on= commonFeatures)
+    table = Table(coLocationName, records)
+    return table
+
+
+
+def createCandidates(size):
+    prunedTables = [instance for instance in tableInstances[size-1] if instance.prevalence == True]
+    tableInstances.append([])
+    for i in range(0,len(prunedTables)-1):
+        for j in range(i+1,len(prunedTables)):
+            if isValidCandidate(prunedTables[i],prunedTables[j], size + 1):
+                joinT = joinTables(prunedTables[i],prunedTables[j])
+                tableInstances[size].append(joinT)
+
+
+def calculatePrevalence(size, prevalence_threshold):
+    for i in range(0, len(tableInstances[size-1])):
+        features = tableInstances[size-1][i].record.columns.values.tolist()
+        number_of_instances = [len(np.unique(tableInstances[size-1][i].record[f].values)) for f in features]
+        participation_ratios = [ float(number_of_instances[index])/total_num_instances[f] for index, f in enumerate(features)]
+        participation_index = min(participation_ratios)
+        tableInstances[size-1][i].set_participation_index(participation_index, prevalence_threshold)
+        print('Table Name {} : Participation Index -> {}'.format(tableInstances[size-1][i].name, participation_index))
+
+
+def initializeColocation(prevalence_threshold):
+    global fileFeatureMap
+    global colocationMap
+    initial_tables_1 = []
+    for feature in fileFeatureMap:
+        transactionIds = mainDataFrame['transaction_id'][mainDataFrame['feature'] == fileFeatureMap[feature]].values
+        total_num_instances[fileFeatureMap[feature]] = len(transactionIds)
+        records = pd.DataFrame(data = transactionIds, columns= [feature])
+        table = Table(feature, records)
+        initial_tables_1.append(table)
+
+    tableInstances.append(initial_tables_1)
+    print('Total Instances per feature : {}'.format(total_num_instances))
+    with open('entry.pickle', 'rb') as f:
+        initial_tables_2 = pickle.load(f)    
+
+     #initial_tables_2 = colocationMap[2]
+    # sorted_features = sorted(featuresMap.keys())
+    # for i in range(0,len(sorted_features) -1):
+    #     for j in range(i+1, len(sorted_features)):
+    #         transactionIds_1 = df['transaction_id'][df['feature'] == featuresMap[sorted_features[i]]].values
+    #         transactionIds_2 = df['transaction_id'][df['feature'] == featuresMap[sorted_features[j]]].values
+    #         records = pd.DataFrame(data = list(zip(transactionIds_1, transactionIds_2)), columns= list(zip(sorted_features[i], sorted_features[])))
+    #         feature = sorted_features[i] + sorted_features[j]
+    #         table = Table(feature, records)
+    #         initial_tables_2.append(table)
+    tableInstances.append(initial_tables_2)
+    calculatePrevalence(2,prevalence_threshold)
+
+
+
+def generateColocationRules(size):
+    global colocationRules
+    for i in range(0,len(tableInstances[size])):
+        if tableInstances[size][i].prevalence:
+            colocationRules.append(tableInstances[size][i].name)
+
+
+
+def colocationMinerAlgo(prevalence_threshold):
+    initializeColocation(prevalence_threshold)
+    previousColocation = True
+    for k in range(3, len(fileFeatureMap)):
+        if previousColocation:
+            createCandidates(k-1)
+            calculatePrevalence(k, prevalence_threshold)
+            #print(tableInstances[k-1])
+            generateColocationRules(k-1)
+        else:
+            break
 
 
 def main():
@@ -335,11 +405,14 @@ def main():
     featuresFile = readParams(configFile, outputFile)
     loadMainDataFrame(featuresFile)
     createColocationMap(fileFeatureMap)
-    print(colocationMap)
+    #print(colocationMap)
     # candidateFeatures.append(featuresMap.keys())
 
     # df =
-    #colocationMinerAlgo(df, 0.5)
+    with open('entry.pickle', 'wb') as f:
+        pickle.dump(colocationMap[2], f) 
+    colocationMinerAlgo(0.5)
+    print(colocationRules)
     # print(featuresMap)
     # print(distanceMap)
 
