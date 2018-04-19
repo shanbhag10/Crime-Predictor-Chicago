@@ -66,11 +66,14 @@ def readParams(configFile, outputFile):
 def mapFeatures(featuresList):
     """Map file names to Alphabet for short dictionary keys."""
     global fileFeatureMap
+    global mainDataFrame
+
     print('\nFeature --> Shortname')
     for num, feature in enumerate(featuresList):
         alphabet = chr(65 + num)
         fileFeatureMap[feature] = alphabet
-        print('{} --> {}'.format(feature, alphabet))
+        cnt = len(mainDataFrame[mainDataFrame['feature'] == feature].index)
+        print('{} --> {}: {}'.format(feature, alphabet, cnt))
     print('\n')
 
 
@@ -82,7 +85,7 @@ def loadMainDataFrame(featuresFile):
     # Add column name
     columns = ['transaction_id', 'lat', 'long', 'feature']
     mainDataFrame = pd.read_csv(featuresFile, names=columns)
-    featuresList = set(mainDataFrame['feature'])
+    featuresList = sorted(list(set(mainDataFrame['feature'])))
 
     # Map features
     mapFeatures(featuresList)
@@ -128,8 +131,6 @@ def createColocationMap(featuresMap):
     features = [_ for _ in fileFeatureMap.values()]
     featureCount = len(features)
 
-    executor = futures.ThreadPoolExecutor(max_workers=20)
-
     for idx1 in range(featureCount):
         currFeature = features[idx1]
 
@@ -173,7 +174,9 @@ def createColocationMap(featuresMap):
                     continue
 
                 destinationCoords = oR[['lat', 'long']].values.tolist()
-                results = executor.map(haversineDistance, destinationCoords)
+                results = []
+                for coords in destinationCoords:
+                    results.append(haversineDistance(coords))
 
                 for idx, res in enumerate(results):
                     if res:
@@ -323,7 +326,6 @@ def initializeColocation(prevalence_threshold):
         initial_tables_1.append(table)
 
     tableInstances.append(initial_tables_1)
-    print('Total Instances per feature : {}'.format(total_num_instances))
     with open('entry.pickle', 'rb') as f:
         initial_tables_2 = pickle.load(f)
 
