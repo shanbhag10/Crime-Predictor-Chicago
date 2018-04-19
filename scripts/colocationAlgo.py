@@ -311,8 +311,24 @@ def joinTables(tableA, tableB):
         commonFeatures = list(commonFeatures)
     print(commonFeatures)
     records = pd.merge(tableA.record, tableB.record, how='inner', on= commonFeatures)
-    table = Table(coLocationName, records)
-    return table
+
+    table = type('Table', (object,), {})()
+    found_index = -1
+    if len(tableInstances[len(coLocationName)-1]) > 0:
+        for i in range(len(tableInstances[len(coLocationName)-1])):
+            if tableInstances[len(coLocationName)-1][i].name == coLocationName:
+                found_index = i
+                break
+
+    print('Found Index{}'.format(found_index))
+    if found_index > -1:
+        table = tableInstances[len(coLocationName)-1][i]
+        table.record.append(records, ignore_index = True)
+    else:
+        table = Table(coLocationName, records)
+
+        
+    return found_index, table
 
 
 
@@ -322,8 +338,9 @@ def createCandidates(size):
     for i in range(0,len(prunedTables)-1):
         for j in range(i+1,len(prunedTables)):
             if isValidCandidate(prunedTables[i],prunedTables[j], size + 1):
-                joinT = joinTables(prunedTables[i],prunedTables[j])
-                tableInstances[size].append(joinT)
+                found_index, joinT = joinTables(prunedTables[i],prunedTables[j])
+                if found_index == -1:
+                    tableInstances[size].append(joinT)
 
 
 def calculatePrevalence(size, prevalence_threshold):
@@ -404,13 +421,13 @@ def main():
 
     featuresFile = readParams(configFile, outputFile)
     loadMainDataFrame(featuresFile)
-    createColocationMap(fileFeatureMap)
+    #createColocationMap(fileFeatureMap)
     #print(colocationMap)
     # candidateFeatures.append(featuresMap.keys())
 
     # df =
-    with open('entry.pickle', 'wb') as f:
-        pickle.dump(colocationMap[2], f) 
+    # with open('entry.pickle', 'wb') as f:
+    #     pickle.dump(colocationMap[2], f) 
     colocationMinerAlgo(0.5)
     print(colocationRules)
     # print(featuresMap)
