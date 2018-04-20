@@ -331,6 +331,7 @@ def initializeColocation(prevalence_threshold):
 
     tableInstances.append(initial_tables_2)
     calculatePrevalence(2,prevalence_threshold)
+    generateColocationRules(1)
 
 
 def generateColocationRules(size):
@@ -371,12 +372,32 @@ def main():
 
     featuresFile = readParams(configFile, outputFile)
     loadMainDataFrame(featuresFile)
-    createColocationMap(fileFeatureMap)
+    #createColocationMap(fileFeatureMap)
 
-    with open('entry.pickle', 'wb') as pickleHandle:
-        pickle.dump(colocationMap[2], pickleHandle)
+    # with open('entry.pickle', 'wb') as pickleHandle:
+    #     pickle.dump(colocationMap[2], pickleHandle)
     colocationMinerAlgo(0.5)
     print(colocationRules)
+
+
+    
+    for i in range(2, len(tableInstances)):
+        for table in tableInstances[i]:
+            rows = []
+            if table.prevalence:
+                features = list(table.name)
+                for index, row in table.record.iterrows():
+                    if index > 10:
+                        break
+                    for f in features:
+                        current_row = []
+                        current_row.append(mainDataFrame['lat'][mainDataFrame['transaction_id'] == row[f]].values[0])
+                        current_row.append(mainDataFrame['long'][mainDataFrame['transaction_id'] == row[f]].values[0])
+                        current_row.append(index+1)
+                        rows.append(current_row)
+
+                df = pd.DataFrame(rows, columns= ['Lat','Long', 'group'])
+                df.to_csv('../data/output/'+ table.name+'.csv')
 
 
 if __name__ == "__main__":
