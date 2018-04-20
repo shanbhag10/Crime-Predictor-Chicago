@@ -8,11 +8,10 @@ import pandas as pd
 import pickle
 import sys
 
-from concurrent import futures
 from tabulate import tabulate
 from time import time
 
-mainDataFrame = None
+mainDF = None
 fileFeatureMap = {}
 candidateFeatures = []
 tableInstances = []
@@ -66,35 +65,35 @@ def readParams(configFile, outputFile):
 def mapFeatures(featuresList):
     """Map file names to Alphabet for short dictionary keys."""
     global fileFeatureMap
-    global mainDataFrame
+    global mainDF
 
     print('\nFeature --> Shortname')
     for num, feature in enumerate(featuresList):
         alphabet = chr(65 + num)
         fileFeatureMap[feature] = alphabet
-        cnt = len(mainDataFrame[mainDataFrame['feature'] == feature].index)
+        cnt = len(mainDF[mainDF['feature'] == feature].index)
         print('{} --> {}: {}'.format(feature, alphabet, cnt))
     print('\n')
 
 
-def loadMainDataFrame(featuresFile):
+def loadmainDF(featuresFile):
     """Generate the features map."""
-    global mainDataFrame
+    global mainDF
     global fileFeatureMap
 
     # Add column name
-    columns = ['transaction_id', 'lat', 'long', 'feature']
-    mainDataFrame = pd.read_csv(featuresFile, names=columns)
-    featuresList = sorted(list(set(mainDataFrame['feature'])))
+    columns = ['row_id', 'lat', 'long', 'feature']
+    mainDF = pd.read_csv(featuresFile, names=columns)
+    featuresList = sorted(list(set(mainDF['feature'])))
 
     # Map features
     mapFeatures(featuresList)
 
     # Map feature to Alphabet for all the records
-    mainDataFrame['feature'] = mainDataFrame['feature'].apply(
+    mainDF['feature'] = mainDF['feature'].apply(
         lambda x: fileFeatureMap[x])
 
-    print('Total {} records'.format(len(mainDataFrame.index)))
+    print('Total {} records'.format(len(mainDF.index)))
 
 
 # def haversineDistance(origin, destination):
@@ -135,14 +134,14 @@ def createColocationMap(featuresMap):
         currFeature = features[idx1]
 
         # Current feature records
-        cR = mainDataFrame[mainDataFrame['feature'] == currFeature]
+        cR = mainDF[mainDF['feature'] == currFeature]
 
         for idx2 in range(idx1 + 1, featureCount):
             # Other feature records
             otherFeature = features[idx2]
             print('Generating colocation table for {}{}'.format(currFeature,
                                                                 otherFeature))
-            oR = mainDataFrame[mainDataFrame['feature'] == otherFeature]
+            oR = mainDF[mainDF['feature'] == otherFeature]
             copyOR = oR
             tempRowInsts = []
 
@@ -152,7 +151,7 @@ def createColocationMap(featuresMap):
 
             for _, row in cR.iterrows():
                 currLat, currLong = row['lat'], row['long']
-                index = row['transaction_id']
+                index = row['row_id']
 
                 latUp = row['lat'] + 0.00725
                 latLow = row['lat'] - 0.00725
@@ -181,7 +180,7 @@ def createColocationMap(featuresMap):
                 for idx, res in enumerate(results):
                     if res:
                         tempRowInsts.append(
-                            [index, oR.iloc[idx]['transaction_id']])
+                            [index, oR.iloc[idx]['row_id']])
                 oR = copyOR
 
                 processed += 1
@@ -247,7 +246,7 @@ def longest_common_substring(string1, string2):
     return "".join(lcs)
 
 
-def isValidCandidate(tableA, tableB,size):
+def isValidCandidate(tableA, tableB, size):
     """Check if by merging two colocation tables we can create new."""
     name = tableA.name + tableB.name
     coLocationName = ''.join(set(name))
@@ -293,9 +292,9 @@ def createCandidates(size):
         if instance.prevalence:
             prunedTables.append(instance)
     tableInstances.append([])
-    for i in range(0,len(prunedTables)-1):
-        for j in range(i+1,len(prunedTables)):
-            if isValidCandidate(prunedTables[i],prunedTables[j], size + 1):
+    for i in range(0, len(prunedTables)-1):
+        for j in range(i+1, len(prunedTables)):
+            if isValidCandidate(prunedTables[i], prunedTables[j], size + 1):
                 found_index, joinT = joinTables(prunedTables[i],
                                                 prunedTables[j])
                 if found_index == -1:
@@ -319,9 +318,9 @@ def initializeColocation(prevalence_threshold):
     global colocationMap
     initial_tables_1 = []
     for feature in fileFeatureMap:
-        transactionIds = mainDataFrame['transaction_id'][mainDataFrame['feature'] == fileFeatureMap[feature]].values
+        transactionIds = mainDF['row_id'][mainDF['feature'] == fileFeatureMap[feature]].values
         total_num_instances[fileFeatureMap[feature]] = len(transactionIds)
-        records = pd.DataFrame(data = transactionIds, columns= [feature])
+        records = pd.DataFrame(data=transactionIds, columns=[feature])
         table = Table(feature, records)
         initial_tables_1.append(table)
 
@@ -330,14 +329,15 @@ def initializeColocation(prevalence_threshold):
         initial_tables_2 = pickle.load(f)
 
     tableInstances.append(initial_tables_2)
-    calculatePrevalence(2,prevalence_threshold)
+    calculatePrevalence(2, prevalence_threshold)
+    # For colocation of size 2
     generateColocationRules(1)
 
 
 def generateColocationRules(size):
     """Generate the co-location rules."""
     global colocationRules
-    for i in range(0,len(tableInstances[size])):
+    for i in range(0, len(tableInstances[size])):
         if tableInstances[size][i].prevalence:
             colocationRules.append(tableInstances[size][i].name)
 
@@ -356,6 +356,27 @@ def colocationMinerAlgo(prevalence_threshold):
             break
 
 
+def createQGISFiles():
+    """Generate Files for QGIS."""
+    for i in range(2, len(tableInstances)):
+        for table in tableInstances[i]:
+            rows = []
+            if table.prevalence:
+                features = list(table.name)
+                for index, row in table.record.iterrows():
+                    if index > 10:
+                        break
+                    for f in features:
+                        current_row = []
+                        current_row.append(mainDF['lat'][mainDF['row_id'] == row[f]].values[0])
+                        current_row.append(mainDF['long'][mainDF['row_id'] == row[f]].values[0])
+                        current_row.append(index+1)
+                        rows.append(current_row)
+
+                df = pd.DataFrame(rows, columns=['Lat', 'Long', 'group'])
+                df.to_csv('../data/output/' + table.name + '.csv')
+
+
 def main():
     """Initialize everything and run the algorithm."""
     global distThreshold
@@ -368,36 +389,27 @@ def main():
     outputFile = sys.argv[2]
 
     # Value that determines the neighbor relation
-    distThreshold = 0.5
+    distThreshold = 0.15
+    # Value that determines the prevalence index
+    prevIndexThres = 0.5
+    # Other configurations
+    usePickle = False
+    qgisFiles = False
 
     featuresFile = readParams(configFile, outputFile)
-    loadMainDataFrame(featuresFile)
-    #createColocationMap(fileFeatureMap)
+    loadmainDF(featuresFile)
 
-    # with open('entry.pickle', 'wb') as pickleHandle:
-    #     pickle.dump(colocationMap[2], pickleHandle)
-    colocationMinerAlgo(0.5)
+    if not usePickle:
+        createColocationMap(fileFeatureMap)
+
+        with open('entry.pickle', 'wb') as pickleHandle:
+            pickle.dump(colocationMap[2], pickleHandle)
+
+    colocationMinerAlgo(prevIndexThres)
     print(colocationRules)
 
-
-    
-    for i in range(2, len(tableInstances)):
-        for table in tableInstances[i]:
-            rows = []
-            if table.prevalence:
-                features = list(table.name)
-                for index, row in table.record.iterrows():
-                    if index > 10:
-                        break
-                    for f in features:
-                        current_row = []
-                        current_row.append(mainDataFrame['lat'][mainDataFrame['transaction_id'] == row[f]].values[0])
-                        current_row.append(mainDataFrame['long'][mainDataFrame['transaction_id'] == row[f]].values[0])
-                        current_row.append(index+1)
-                        rows.append(current_row)
-
-                df = pd.DataFrame(rows, columns= ['Lat','Long', 'group'])
-                df.to_csv('../data/output/'+ table.name+'.csv')
+    if qgisFiles:
+        createQGISFiles()
 
 
 if __name__ == "__main__":
