@@ -1,0 +1,222 @@
+######### CONFIGURATION #########
+Distance Threshold: 0.15
+Prevalence Index: 0.75
+#################################
+Reading config file :../config/op_new.config, Done
+
+Feature --> Shortname
+ARSON --> A: 19
+ASSAULT --> B: 1224
+BURGLARY --> C: 647
+HOMICIDE --> D: 31
+HUMAN TRAFFICKING --> E: 2
+INTERFERENCE WITH PUBLIC OFFICER --> F: 79
+KIDNAPPING --> G: 7
+LIQUOR LAW VIOLATION --> H: 27
+MOTOR VEHICLE THEFT --> I: 752
+NARCOTICS --> J: 1195
+OFFENSE INVOLVING CHILDREN --> K: 101
+PROSTITUTION --> L: 35
+ROBBERY --> M: 798
+SEX OFFENSE --> N: 54
+WEAPONS VIOLATION --> O: 276
+church --> P: 64
+library --> Q: 21
+new_bars --> R: 1184
+police --> S: 6
+school --> T: 203
+
+
+Total 6725 records
+Table Name AB : Participation Index -> 0.031862745098039214
+Table Name AC : Participation Index -> 0.021638330757341576
+Table Name AD : Participation Index -> 0.0
+Table Name AE : Participation Index -> 0.0
+Table Name AF : Participation Index -> 0.0
+Table Name AG : Participation Index -> 0.0
+Table Name AH : Participation Index -> 0.037037037037037035
+Table Name AI : Participation Index -> 0.043882978723404256
+Table Name AJ : Participation Index -> 0.09539748953974896
+Table Name AK : Participation Index -> 0.0
+Table Name AL : Participation Index -> 0.0
+Table Name AM : Participation Index -> 0.046365914786967416
+Table Name AN : Participation Index -> 0.0
+Table Name AO : Participation Index -> 0.0
+Table Name AP : Participation Index -> 0.03125
+Table Name AQ : Participation Index -> 0.0
+Table Name AR : Participation Index -> 0.03125
+Table Name AS : Participation Index -> 0.0
+Table Name AT : Participation Index -> 0.034482758620689655
+Table Name BC : Participation Index -> 0.5743464052287581
+Table Name BD : Participation Index -> 0.0
+Table Name BE : Participation Index -> 0.0
+Table Name BF : Participation Index -> 0.0
+Table Name BG : Participation Index -> 0.0
+Table Name BH : Participation Index -> 0.0
+Table Name BI : Participation Index -> 0.6715686274509803
+Table Name BJ : Participation Index -> 0.1715686274509804
+Table Name BK : Participation Index -> 0.0016339869281045752
+Table Name BL : Participation Index -> 0.0
+Table Name BM : Participation Index -> 0.22794117647058823
+Table Name BN : Participation Index -> 0.004084967320261438
+Table Name BO : Participation Index -> 0.0016339869281045752
+Table Name BP : Participation Index -> 0.0024509803921568627
+Table Name BQ : Participation Index -> 0.0
+Table Name BR : Participation Index -> 0.3366013071895425
+Table Name BS : Participation Index -> 0.0
+Table Name BT : Participation Index -> 0.004901960784313725
+Table Name CD : Participation Index -> 0.0
+Table Name CE : Participation Index -> 0.0
+Table Name CF : Participation Index -> 0.0
+Table Name CG : Participation Index -> 0.0
+Table Name CH : Participation Index -> 0.00927357032457496
+Table Name CI : Participation Index -> 0.6210106382978723
+Table Name CJ : Participation Index -> 0.030911901081916538
+Table Name CK : Participation Index -> 0.00463678516228748
+Table Name CL : Participation Index -> 0.0
+Table Name CM : Participation Index -> 0.5964912280701754
+Table Name CN : Participation Index -> 0.00463678516228748
+Table Name CO : Participation Index -> 0.0077279752704791345
+Table Name CP : Participation Index -> 0.0
+Table Name CQ : Participation Index -> 0.0
+Table Name CR : Participation Index -> 0.36476043276661513
+Table Name CS : Participation Index -> 0.0
+Table Name CT : Participation Index -> 0.0015455950540958269
+Table Name DE : Participation Index -> 0.0
+Table Name DF : Participation Index -> 0.02531645569620253
+Table Name DG : Participation Index -> 0.0
+Table Name DH : Participation Index -> 0.03225806451612903
+Table Name DI : Participation Index -> 0.07579787234042554
+Table Name DJ : Participation Index -> 0.010878661087866108
+Table Name DK : Participation Index -> 0.06930693069306931
+Table Name DL : Participation Index -> 0.0
+Table Name DM : Participation Index -> 0.07518796992481203
+Table Name DN : Participation Index -> 0.09259259259259259
+Table Name DO : Participation Index -> 0.13405797101449277
+Table Name DP : Participation Index -> 0.046875
+Table Name DQ : Participation Index -> 0.0
+Table Name DR : Participation Index -> 0.022804054054054054
+Table Name DS : Participation Index -> 0.0
+Table Name DT : Participation Index -> 0.03940886699507389
+Table Name EF : Participation Index -> 0.0
+Table Name EG : Participation Index -> 0.0
+Table Name EH : Participation Index -> 0.037037037037037035
+Table Name EI : Participation Index -> 0.0013297872340425532
+Table Name EJ : Participation Index -> 0.0041841004184100415
+Table Name EK : Participation Index -> 0.0
+Table Name EL : Participation Index -> 0.0
+Table Name EM : Participation Index -> 0.011278195488721804
+Table Name EN : Participation Index -> 0.0
+Table Name EO : Participation Index -> 0.018115942028985508
+Table Name EP : Participation Index -> 0.0
+Table Name EQ : Participation Index -> 0.0
+Table Name ER : Participation Index -> 0.02533783783783784
+Table Name ES : Participation Index -> 0.0
+Table Name ET : Participation Index -> 0.0049261083743842365
+Table Name FG : Participation Index -> 0.0
+Table Name FH : Participation Index -> 0.0379746835443038
+Table Name FI : Participation Index -> 0.18085106382978725
+Table Name FJ : Participation Index -> 0.5556485355648536
+Table Name FK : Participation Index -> 0.1485148514851485
+Table Name FL : Participation Index -> 0.0
+Table Name FM : Participation Index -> 0.21428571428571427
+Table Name FN : Participation Index -> 0.1111111111111111
+Table Name FO : Participation Index -> 0.19202898550724637
+Table Name FP : Participation Index -> 0.012658227848101266
+Table Name FQ : Participation Index -> 0.0379746835443038
+Table Name FR : Participation Index -> 0.10472972972972973
+Table Name FS : Participation Index -> 0.0
+Table Name FT : Participation Index -> 0.019704433497536946
+Table Name GH : Participation Index -> 0.0
+Table Name GI : Participation Index -> 0.011968085106382979
+Table Name GJ : Participation Index -> 0.042677824267782424
+Table Name GK : Participation Index -> 0.019801980198019802
+Table Name GL : Participation Index -> 0.0
+Table Name GM : Participation Index -> 0.005012531328320802
+Table Name GN : Participation Index -> 0.0
+Table Name GO : Participation Index -> 0.025362318840579712
+Table Name GP : Participation Index -> 0.015625
+Table Name GQ : Participation Index -> 0.047619047619047616
+Table Name GR : Participation Index -> 0.0
+Table Name GS : Participation Index -> 0.0
+Table Name GT : Participation Index -> 0.034482758620689655
+Table Name HI : Participation Index -> 0.06914893617021277
+Table Name HJ : Participation Index -> 0.03933054393305439
+Table Name HK : Participation Index -> 0.0
+Table Name HL : Participation Index -> 0.0
+Table Name HM : Participation Index -> 0.07268170426065163
+Table Name HN : Participation Index -> 0.018518518518518517
+Table Name HO : Participation Index -> 0.007246376811594203
+Table Name HP : Participation Index -> 0.03125
+Table Name HQ : Participation Index -> 0.07407407407407407
+Table Name HR : Participation Index -> 0.1241554054054054
+Table Name HS : Participation Index -> 0.0
+Table Name HT : Participation Index -> 0.04926108374384237
+Table Name IJ : Participation Index -> 0.003989361702127659
+Table Name IK : Participation Index -> 0.0
+Table Name IL : Participation Index -> 0.0
+Table Name IM : Participation Index -> 0.648936170212766
+Table Name IN : Participation Index -> 0.09574468085106383
+Table Name IO : Participation Index -> 0.05319148936170213
+Table Name IP : Participation Index -> 0.014627659574468085
+Table Name IQ : Participation Index -> 0.0013297872340425532
+Table Name IR : Participation Index -> 0.3377659574468085
+Table Name IS : Participation Index -> 0.0
+Table Name IT : Participation Index -> 0.02526595744680851
+Table Name JK : Participation Index -> 0.021757322175732216
+Table Name JL : Participation Index -> 0.0
+Table Name JM : Participation Index -> 0.17656903765690377
+Table Name JN : Participation Index -> 0.03598326359832636
+Table Name JO : Participation Index -> 0.17322175732217573
+Table Name JP : Participation Index -> 0.0100418410041841
+Table Name JQ : Participation Index -> 0.0
+Table Name JR : Participation Index -> 0.06443514644351464
+Table Name JS : Participation Index -> 0.0
+Table Name JT : Participation Index -> 0.008368200836820083
+Table Name KL : Participation Index -> 0.0
+Table Name KM : Participation Index -> 0.18295739348370926
+Table Name KN : Participation Index -> 0.09900990099009901
+Table Name KO : Participation Index -> 0.036231884057971016
+Table Name KP : Participation Index -> 0.009900990099009901
+Table Name KQ : Participation Index -> 0.0
+Table Name KR : Participation Index -> 0.12077702702702703
+Table Name KS : Participation Index -> 0.0
+Table Name KT : Participation Index -> 0.12807881773399016
+Table Name LM : Participation Index -> 0.020050125313283207
+Table Name LN : Participation Index -> 0.0
+Table Name LO : Participation Index -> 0.06159420289855073
+Table Name LP : Participation Index -> 0.0
+Table Name LQ : Participation Index -> 0.0
+Table Name LR : Participation Index -> 0.0033783783783783786
+Table Name LS : Participation Index -> 0.0
+Table Name LT : Participation Index -> 0.009852216748768473
+Table Name MN : Participation Index -> 0.13032581453634084
+Table Name MO : Participation Index -> 0.03383458646616541
+Table Name MP : Participation Index -> 0.0
+Table Name MQ : Participation Index -> 0.0012531328320802004
+Table Name MR : Participation Index -> 0.38095238095238093
+Table Name MS : Participation Index -> 0.0
+Table Name MT : Participation Index -> 0.015037593984962405
+Table Name NO : Participation Index -> 0.03985507246376811
+Table Name NP : Participation Index -> 0.0
+Table Name NQ : Participation Index -> 0.0
+Table Name NR : Participation Index -> 0.17060810810810811
+Table Name NS : Participation Index -> 0.0
+Table Name NT : Participation Index -> 0.014778325123152709
+Table Name OP : Participation Index -> 0.014492753623188406
+Table Name OQ : Participation Index -> 0.0
+Table Name OR : Participation Index -> 0.10507246376811594
+Table Name OS : Participation Index -> 0.0
+Table Name OT : Participation Index -> 0.11594202898550725
+Table Name PQ : Participation Index -> 0.0
+Table Name PR : Participation Index -> 0.07601351351351351
+Table Name PS : Participation Index -> 0.0
+Table Name PT : Participation Index -> 0.0049261083743842365
+Table Name QR : Participation Index -> 0.030405405405405407
+Table Name QS : Participation Index -> 0.0
+Table Name QT : Participation Index -> 0.04433497536945813
+Table Name RS : Participation Index -> 0.0
+Table Name RT : Participation Index -> 0.0016891891891891893
+Table Name ST : Participation Index -> 0.009852216748768473
+[]
+Total time Taken 0.11260294914245605
