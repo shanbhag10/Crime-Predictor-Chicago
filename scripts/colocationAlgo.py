@@ -385,7 +385,9 @@ def main():
     global distThreshold
     global colocationMap
 
-    if len(sys.argv) < 3:
+    mainStart = time()
+
+    if len(sys.argv) < 2:
         print('Please pass the parameters <CONFIG_FILE>')
         sys.exit(-1)
     configFile = sys.argv[1]
@@ -414,6 +416,8 @@ def main():
 
     colocationMinerAlgo(prevIndexThres)
     print(colocationRules)
+
+    print('Total time Taken {}'.format(time()-mainStart))
 
     if qgisFiles:
         createQGISFiles()
