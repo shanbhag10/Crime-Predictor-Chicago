@@ -1,0 +1,1756 @@
+######### CONFIGURATION #########
+Distance Threshold: 0.5
+Prevalence Index: 0.5
+#################################
+Reading config file :../config/op_new.config, Done
+
+Feature --> Shortname
+ARSON --> A: 19
+ASSAULT --> B: 1224
+BURGLARY --> C: 647
+HOMICIDE --> D: 31
+HUMAN TRAFFICKING --> E: 2
+INTERFERENCE WITH PUBLIC OFFICER --> F: 79
+KIDNAPPING --> G: 7
+LIQUOR LAW VIOLATION --> H: 27
+MOTOR VEHICLE THEFT --> I: 752
+NARCOTICS --> J: 1195
+OFFENSE INVOLVING CHILDREN --> K: 101
+PROSTITUTION --> L: 35
+ROBBERY --> M: 798
+SEX OFFENSE --> N: 54
+WEAPONS VIOLATION --> O: 276
+church --> P: 64
+library --> Q: 21
+new_bars --> R: 1184
+police --> S: 6
+school --> T: 203
+
+
+Total 6725 records
+Generating colocation table for AB
+19 0.12453866004943848 0
+Generating colocation table for AC
+19 0.09828305244445801 0
+Generating colocation table for AD
+19 0.041052818298339844 0
+Generating colocation table for AE
+19 0.038845062255859375 0
+Generating colocation table for AF
+19 0.0384979248046875 0
+Generating colocation table for AG
+19 0.040268898010253906 0
+Generating colocation table for AH
+19 0.04767799377441406 0
+Generating colocation table for AI
+19 0.08931922912597656 0
+Generating colocation table for AJ
+19 0.15526199340820312 0
+Generating colocation table for AK
+19 0.04432320594787598 0
+Generating colocation table for AL
+19 0.04369688034057617 0
+Generating colocation table for AM
+19 0.09779214859008789 0
+Generating colocation table for AN
+19 0.044817209243774414 0
+Generating colocation table for AO
+19 0.03682589530944824 0
+Generating colocation table for AP
+19 0.04693794250488281 0
+Generating colocation table for AQ
+19 0.03695106506347656 0
+Generating colocation table for AR
+19 0.1047968864440918 0
+Generating colocation table for AS
+19 0.03841710090637207 0
+Generating colocation table for AT
+19 0.0664668083190918 0
+Generating colocation table for BC
+500 1.9337611198425293 724
+1000 1.9761457443237305 224
+1224 0.8601441383361816 0
+Generating colocation table for BD
+500 1.0158030986785889 724
+1000 1.020249843597412 224
+1224 0.45903706550598145 0
+Generating colocation table for BE
+500 1.0294952392578125 724
+1000 1.0299718379974365 224
+1224 0.4616880416870117 0
+Generating colocation table for BF
+500 1.0109150409698486 724
+1000 1.0285108089447021 224
+1224 0.46099400520324707 0
+Generating colocation table for BG
+500 1.0176477432250977 724
+1000 1.0124390125274658 224
+1224 0.4946129322052002 0
+Generating colocation table for BH
+500 1.0637118816375732 724
+1000 1.0496289730072021 224
+1224 0.4605269432067871 0
+Generating colocation table for BI
+500 2.205389976501465 724
+1000 2.2116830348968506 224
+1224 0.9763438701629639 0
+Generating colocation table for BJ
+500 2.9791722297668457 724
+1000 1.033041000366211 224
+1224 0.4575369358062744 0
+Generating colocation table for BK
+500 1.031493902206421 724
+1000 1.0305051803588867 224
+1224 0.45003318786621094 0
+Generating colocation table for BL
+500 1.0203609466552734 724
+1000 1.0285470485687256 224
+1224 0.4600358009338379 0
+Generating colocation table for BM
+500 2.241589069366455 724
+1000 1.015841007232666 224
+1224 0.4560210704803467 0
+Generating colocation table for BN
+500 1.1857688426971436 724
+1000 1.2838859558105469 224
+1224 0.5628840923309326 0
+Generating colocation table for BO
+500 1.2532079219818115 724
+1000 1.0915968418121338 224
+1224 0.467271089553833 0
+Generating colocation table for BP
+500 1.1427948474884033 724
+1000 1.0940728187561035 224
+1224 0.6291768550872803 0
+Generating colocation table for BQ
+500 1.0785253047943115 724
+1000 1.077578067779541 224
+1224 0.48030900955200195 0
+Generating colocation table for BR
+500 3.5340070724487305 724
+1000 3.27527117729187 224
+1224 1.3212649822235107 0
+Generating colocation table for BS
+500 1.1962177753448486 724
+1000 1.047978162765503 224
+1224 0.5210878849029541 0
+Generating colocation table for BT
+500 1.0989820957183838 724
+1000 1.0804290771484375 224
+1224 0.5557310581207275 0
+Generating colocation table for CD
+500 1.0273401737213135 147
+647 0.2950248718261719 0
+Generating colocation table for CE
+500 1.0505731105804443 147
+647 0.29610395431518555 0
+Generating colocation table for CF
+500 1.0039451122283936 147
+647 0.35515403747558594 0
+Generating colocation table for CG
+500 1.051969051361084 147
+647 0.30421996116638184 0
+Generating colocation table for CH
+500 1.0662460327148438 147
+647 0.3685450553894043 0
+Generating colocation table for CI
+500 2.2619130611419678 147
+647 0.7568149566650391 0
+Generating colocation table for CJ
+500 1.3103690147399902 147
+647 0.30667686462402344 0
+Generating colocation table for CK
+500 1.3351972103118896 147
+647 0.4321131706237793 0
+Generating colocation table for CL
+500 1.2019011974334717 147
+647 0.37414097785949707 0
+Generating colocation table for CM
+500 2.3266849517822266 147
+647 0.6990737915039062 0
+Generating colocation table for CN
+500 1.0337390899658203 147
+647 0.30808496475219727 0
+Generating colocation table for CO
+500 1.0235352516174316 147
+647 0.31337594985961914 0
+Generating colocation table for CP
+500 1.0170958042144775 147
+647 0.2936103343963623 0
+Generating colocation table for CQ
+500 1.0085570812225342 147
+647 0.29875993728637695 0
+Generating colocation table for CR
+500 2.7462940216064453 147
+647 0.9003760814666748 0
+Generating colocation table for CS
+500 1.0113039016723633 147
+647 0.29627108573913574 0
+Generating colocation table for CT
+500 1.019726037979126 147
+647 0.29995203018188477 0
+Generating colocation table for DE
+31 0.06411314010620117 0
+Generating colocation table for DF
+31 0.0651710033416748 0
+Generating colocation table for DG
+31 0.06204962730407715 0
+Generating colocation table for DH
+31 0.07368183135986328 0
+Generating colocation table for DI
+31 0.13828182220458984 0
+Generating colocation table for DJ
+31 0.07877588272094727 0
+Generating colocation table for DK
+31 0.08531618118286133 0
+Generating colocation table for DL
+31 0.06247973442077637 0
+Generating colocation table for DM
+31 0.1565999984741211 0
+Generating colocation table for DN
+31 0.0735177993774414 0
+Generating colocation table for DO
+31 0.11448383331298828 0
+Generating colocation table for DP
+31 0.08320999145507812 0
+Generating colocation table for DQ
+31 0.06591320037841797 0
+Generating colocation table for DR
+31 0.12857913970947266 0
+Generating colocation table for DS
+31 0.06193113327026367 0
+Generating colocation table for DT
+31 0.08792614936828613 0
+Generating colocation table for EF
+2 0.005460977554321289 0
+Generating colocation table for EG
+2 0.003871917724609375 0
+Generating colocation table for EH
+2 0.00471806526184082 0
+Generating colocation table for EI
+2 0.0103759765625 0
+Generating colocation table for EJ
+2 0.016924142837524414 0
+Generating colocation table for EK
+2 0.0052490234375 0
+Generating colocation table for EL
+2 0.004524946212768555 0
+Generating colocation table for EM
+2 0.018665075302124023 0
+Generating colocation table for EN
+2 0.00594782829284668 0
+Generating colocation table for EO
+2 0.009074926376342773 0
+Generating colocation table for EP
+2 0.0057871341705322266 0
+Generating colocation table for EQ
+2 0.004023075103759766 0
+Generating colocation table for ER
+2 0.03442192077636719 0
+Generating colocation table for ES
+2 0.004141807556152344 0
+Generating colocation table for ET
+2 0.005717039108276367 0
+Generating colocation table for FG
+79 0.15492987632751465 0
+Generating colocation table for FH
+79 0.1721649169921875 0
+Generating colocation table for FI
+79 0.38205909729003906 0
+Generating colocation table for FJ
+79 1.0271811485290527 0
+Generating colocation table for FK
+79 0.18722987174987793 0
+Generating colocation table for FL
+79 0.15859603881835938 0
+Generating colocation table for FM
+79 0.4448409080505371 0
+Generating colocation table for FN
+79 0.19251084327697754 0
+Generating colocation table for FO
+79 0.2352278232574463 0
+Generating colocation table for FP
+79 0.1724710464477539 0
+Generating colocation table for FQ
+79 0.17008590698242188 0
+Generating colocation table for FR
+79 0.3850982189178467 0
+Generating colocation table for FS
+79 0.15711593627929688 0
+Generating colocation table for FT
+79 0.1905961036682129 0
+Generating colocation table for GH
+7 0.016579151153564453 0
+Generating colocation table for GI
+7 0.03431510925292969 0
+Generating colocation table for GJ
+7 0.08256411552429199 0
+Generating colocation table for GK
+7 0.018706083297729492 0
+Generating colocation table for GL
+7 0.015471220016479492 0
+Generating colocation table for GM
+7 0.03465914726257324 0
+Generating colocation table for GN
+7 0.018060684204101562 0
+Generating colocation table for GO
+7 0.031436920166015625 0
+Generating colocation table for GP
+7 0.016553163528442383 0
+Generating colocation table for GQ
+7 0.015876054763793945 0
+Generating colocation table for GR
+7 0.021411895751953125 0
+Generating colocation table for GS
+7 0.01437687873840332 0
+Generating colocation table for GT
+7 0.022848844528198242 0
+Generating colocation table for HI
+27 0.12658119201660156 0
+Generating colocation table for HJ
+27 0.12276506423950195 0
+Generating colocation table for HK
+27 0.05867600440979004 0
+Generating colocation table for HL
+27 0.05343818664550781 0
+Generating colocation table for HM
+27 0.1448981761932373 0
+Generating colocation table for HN
+27 0.06992793083190918 0
+Generating colocation table for HO
+27 0.0562129020690918 0
+Generating colocation table for HP
+27 0.06598806381225586 0
+Generating colocation table for HQ
+27 0.05468487739562988 0
+Generating colocation table for HR
+27 0.32326602935791016 0
+Generating colocation table for HS
+27 0.0532078742980957 0
+Generating colocation table for HT
+27 0.07042312622070312 0
+Generating colocation table for IJ
+500 1.0461819171905518 252
+752 0.5047140121459961 0
+Generating colocation table for IK
+500 1.0313200950622559 252
+752 0.509387731552124 0
+Generating colocation table for IL
+500 1.0064072608947754 252
+752 0.5084760189056396 0
+Generating colocation table for IM
+500 2.310878276824951 252
+752 1.2165708541870117 0
+Generating colocation table for IN
+500 1.2153489589691162 252
+752 0.614109992980957 0
+Generating colocation table for IO
+500 1.1245641708374023 252
+752 0.5041580200195312 0
+Generating colocation table for IP
+500 1.049623966217041 252
+752 0.5036220550537109 0
+Generating colocation table for IQ
+500 1.014519214630127 252
+752 0.5106139183044434 0
+Generating colocation table for IR
+500 2.7538249492645264 252
+752 1.549772024154663 0
+Generating colocation table for IS
+500 1.0106890201568604 252
+752 0.5107560157775879 0
+Generating colocation table for IT
+500 1.0610802173614502 252
+752 0.5102407932281494 0
+Generating colocation table for JK
+500 1.0627639293670654 695
+1000 1.003443956375122 195
+1195 0.39481115341186523 0
+Generating colocation table for JL
+500 0.9987421035766602 695
+1000 1.0018479824066162 195
+1195 0.3910868167877197 0
+Generating colocation table for JM
+500 2.110443115234375 695
+1000 1.084191083908081 195
+1195 0.44164586067199707 0
+Generating colocation table for JN
+500 1.2190883159637451 695
+1000 1.1621551513671875 195
+1195 0.5025980472564697 0
+Generating colocation table for JO
+500 1.9502348899841309 695
+1000 1.1456429958343506 195
+1195 0.4172358512878418 0
+Generating colocation table for JP
+500 1.175981044769287 695
+1000 1.0797209739685059 195
+1195 0.39851999282836914 0
+Generating colocation table for JQ
+500 1.2194180488586426 695
+1000 1.1767189502716064 195
+1195 0.44410204887390137 0
+Generating colocation table for JR
+500 1.9508061408996582 695
+1000 1.8348522186279297 195
+1195 0.6794898509979248 0
+Generating colocation table for JS
+500 1.0315039157867432 695
+1000 1.0310561656951904 195
+1195 0.40659475326538086 0
+Generating colocation table for JT
+500 1.060318946838379 695
+1000 1.0349359512329102 195
+1195 0.4116981029510498 0
+Generating colocation table for KL
+101 0.2023921012878418 0
+Generating colocation table for KM
+101 0.5032460689544678 0
+Generating colocation table for KN
+101 0.2407541275024414 0
+Generating colocation table for KO
+101 0.2612268924713135 0
+Generating colocation table for KP
+101 0.22646403312683105 0
+Generating colocation table for KQ
+101 0.2313539981842041 0
+Generating colocation table for KR
+101 0.4335289001464844 0
+Generating colocation table for KS
+101 0.20557475090026855 0
+Generating colocation table for KT
+101 0.24996399879455566 0
+Generating colocation table for LM
+35 0.18714499473571777 0
+Generating colocation table for LN
+35 0.08337616920471191 0
+Generating colocation table for LO
+35 0.1318798065185547 0
+Generating colocation table for LP
+35 0.08178877830505371 0
+Generating colocation table for LQ
+35 0.08867192268371582 0
+Generating colocation table for LR
+35 0.11126089096069336 0
+Generating colocation table for LS
+35 0.0713510513305664 0
+Generating colocation table for LT
+35 0.09192895889282227 0
+Generating colocation table for MN
+500 1.2705259323120117 298
+798 0.7666549682617188 0
+Generating colocation table for MO
+500 1.1088080406188965 298
+798 0.6130080223083496 0
+Generating colocation table for MP
+500 1.0542709827423096 298
+798 0.6245050430297852 0
+Generating colocation table for MQ
+500 1.086651086807251 298
+798 0.6338779926300049 0
+Generating colocation table for MR
+500 3.6213250160217285 298
+798 2.0188138484954834 0
+Generating colocation table for MS
+500 1.0329482555389404 298
+798 0.6160709857940674 0
+Generating colocation table for MT
+500 1.0616919994354248 298
+798 0.6054389476776123 0
+Generating colocation table for NO
+54 0.14011096954345703 0
+Generating colocation table for NP
+54 0.11252188682556152 0
+Generating colocation table for NQ
+54 0.10778284072875977 0
+Generating colocation table for NR
+54 0.4087181091308594 0
+Generating colocation table for NS
+54 0.11219406127929688 0
+Generating colocation table for NT
+54 0.11192011833190918 0
+Generating colocation table for OP
+276 0.5998280048370361 0
+Generating colocation table for OQ
+276 0.5706870555877686 0
+Generating colocation table for OR
+276 1.111396074295044 0
+Generating colocation table for OS
+276 0.5855529308319092 0
+Generating colocation table for OT
+276 0.6431360244750977 0
+Generating colocation table for PQ
+64 0.12907719612121582 0
+Generating colocation table for PR
+64 0.36287379264831543 0
+Generating colocation table for PS
+64 0.12820887565612793 0
+Generating colocation table for PT
+64 0.12833189964294434 0
+Generating colocation table for QR
+21 0.12353682518005371 0
+Generating colocation table for QS
+21 0.05263996124267578 0
+Generating colocation table for QT
+21 0.06679415702819824 0
+Generating colocation table for RS
+500 1.0274481773376465 684
+1000 1.065434217453003 184
+1184 0.37282705307006836 0
+Generating colocation table for RT
+500 1.0400440692901611 684
+1000 1.0370981693267822 184
+1184 0.3847639560699463 0
+Generating colocation table for ST
+6 0.018728017807006836 0
+Table Name AB : Participation Index -> 0.35130718954248363
+Table Name AC : Participation Index -> 0.28129829984544047
+Table Name AD : Participation Index -> 0.0
+Table Name AE : Participation Index -> 0.0
+Table Name AF : Participation Index -> 0.0
+Table Name AG : Participation Index -> 0.0
+Table Name AH : Participation Index -> 0.42105263157894735
+Table Name AI : Participation Index -> 0.32845744680851063
+Table Name AJ : Participation Index -> 0.4585774058577406
+Table Name AK : Participation Index -> 0.0
+Table Name AL : Participation Index -> 0.0
+Table Name AM : Participation Index -> 0.37343358395989973
+Table Name AN : Participation Index -> 0.18518518518518517
+Table Name AO : Participation Index -> 0.0
+Table Name AP : Participation Index -> 0.203125
+Table Name AQ : Participation Index -> 0.0
+Table Name AR : Participation Index -> 0.2998310810810811
+Table Name AS : Participation Index -> 0.0
+Table Name AT : Participation Index -> 0.2857142857142857
+Table Name BC : Participation Index -> 0.9891808346213292
+Table Name BD : Participation Index -> 0.0
+Table Name BE : Participation Index -> 0.0
+Table Name BF : Participation Index -> 0.0
+Table Name BG : Participation Index -> 0.0
+Table Name BH : Participation Index -> 0.0008169934640522876
+Table Name BI : Participation Index -> 0.9926470588235294
+Table Name BJ : Participation Index -> 0.28104575163398693
+Table Name BK : Participation Index -> 0.007352941176470588
+Table Name BL : Participation Index -> 0.0
+Table Name BM : Participation Index -> 0.3022875816993464
+Table Name BN : Participation Index -> 0.01715686274509804
+Table Name BO : Participation Index -> 0.0016339869281045752
+Table Name BP : Participation Index -> 0.022058823529411766
+Table Name BQ : Participation Index -> 0.0032679738562091504
+Table Name BR : Participation Index -> 0.6879084967320261
+Table Name BS : Participation Index -> 0.0
+Table Name BT : Participation Index -> 0.021241830065359478
+Table Name CD : Participation Index -> 0.0015455950540958269
+Table Name CE : Participation Index -> 0.0
+Table Name CF : Participation Index -> 0.00463678516228748
+Table Name CG : Participation Index -> 0.0
+Table Name CH : Participation Index -> 0.03245749613601236
+Table Name CI : Participation Index -> 0.9922720247295209
+Table Name CJ : Participation Index -> 0.06027820710973725
+Table Name CK : Participation Index -> 0.017001545595054096
+Table Name CL : Participation Index -> 0.0
+Table Name CM : Participation Index -> 0.9567233384853169
+Table Name CN : Participation Index -> 0.04791344667697063
+Table Name CO : Participation Index -> 0.02009273570324575
+Table Name CP : Participation Index -> 0.021638330757341576
+Table Name CQ : Participation Index -> 0.0015455950540958269
+Table Name CR : Participation Index -> 0.7604327666151468
+Table Name CS : Participation Index -> 0.0
+Table Name CT : Participation Index -> 0.00463678516228748
+Table Name DE : Participation Index -> 0.03225806451612903
+Table Name DF : Participation Index -> 0.0967741935483871
+Table Name DG : Participation Index -> 0.03225806451612903
+Table Name DH : Participation Index -> 0.22580645161290322
+Table Name DI : Participation Index -> 0.3803191489361702
+Table Name DJ : Participation Index -> 0.06527196652719665
+Table Name DK : Participation Index -> 0.43564356435643564
+Table Name DL : Participation Index -> 0.0
+Table Name DM : Participation Index -> 0.43734335839599
+Table Name DN : Participation Index -> 0.2962962962962963
+Table Name DO : Participation Index -> 0.5869565217391305
+Table Name DP : Participation Index -> 0.296875
+Table Name DQ : Participation Index -> 0.06451612903225806
+Table Name DR : Participation Index -> 0.22128378378378377
+Table Name DS : Participation Index -> 0.0
+Table Name DT : Participation Index -> 0.35960591133004927
+Table Name EF : Participation Index -> 0.0759493670886076
+Table Name EG : Participation Index -> 0.0
+Table Name EH : Participation Index -> 0.037037037037037035
+Table Name EI : Participation Index -> 0.04920212765957447
+Table Name EJ : Participation Index -> 0.05606694560669456
+Table Name EK : Participation Index -> 0.009900990099009901
+Table Name EL : Participation Index -> 0.0
+Table Name EM : Participation Index -> 0.09774436090225563
+Table Name EN : Participation Index -> 0.09259259259259259
+Table Name EO : Participation Index -> 0.07608695652173914
+Table Name EP : Participation Index -> 0.03125
+Table Name EQ : Participation Index -> 0.0
+Table Name ER : Participation Index -> 0.17060810810810811
+Table Name ES : Participation Index -> 0.0
+Table Name ET : Participation Index -> 0.029556650246305417
+Table Name FG : Participation Index -> 0.0
+Table Name FH : Participation Index -> 0.1518987341772152
+Table Name FI : Participation Index -> 0.5478723404255319
+Table Name FJ : Participation Index -> 0.9188284518828452
+Table Name FK : Participation Index -> 0.3924050632911392
+Table Name FL : Participation Index -> 0.02531645569620253
+Table Name FM : Participation Index -> 0.6604010025062657
+Table Name FN : Participation Index -> 0.48148148148148145
+Table Name FO : Participation Index -> 0.4177215189873418
+Table Name FP : Participation Index -> 0.15625
+Table Name FQ : Participation Index -> 0.1518987341772152
+Table Name FR : Participation Index -> 0.4864864864864865
+Table Name FS : Participation Index -> 0.0
+Table Name FT : Participation Index -> 0.3037974683544304
+Table Name GH : Participation Index -> 0.07407407407407407
+Table Name GI : Participation Index -> 0.11702127659574468
+Table Name GJ : Participation Index -> 0.32552301255230126
+Table Name GK : Participation Index -> 0.13861386138613863
+Table Name GL : Participation Index -> 0.02857142857142857
+Table Name GM : Participation Index -> 0.11528822055137844
+Table Name GN : Participation Index -> 0.018518518518518517
+Table Name GO : Participation Index -> 0.2572463768115942
+Table Name GP : Participation Index -> 0.046875
+Table Name GQ : Participation Index -> 0.09523809523809523
+Table Name GR : Participation Index -> 0.0016891891891891893
+Table Name GS : Participation Index -> 0.0
+Table Name GT : Participation Index -> 0.11822660098522167
+Table Name HI : Participation Index -> 0.3351063829787234
+Table Name HJ : Participation Index -> 0.3288702928870293
+Table Name HK : Participation Index -> 0.019801980198019802
+Table Name HL : Participation Index -> 0.0
+Table Name HM : Participation Index -> 0.37593984962406013
+Table Name HN : Participation Index -> 0.3888888888888889
+Table Name HO : Participation Index -> 0.043478260869565216
+Table Name HP : Participation Index -> 0.1875
+Table Name HQ : Participation Index -> 0.1111111111111111
+Table Name HR : Participation Index -> 0.6452702702702703
+Table Name HS : Participation Index -> 0.0
+Table Name HT : Participation Index -> 0.26108374384236455
+Table Name IJ : Participation Index -> 0.005319148936170213
+Table Name IK : Participation Index -> 0.006648936170212766
+Table Name IL : Participation Index -> 0.0
+Table Name IM : Participation Index -> 0.9893617021276596
+Table Name IN : Participation Index -> 0.5026595744680851
+Table Name IO : Participation Index -> 0.11835106382978723
+Table Name IP : Participation Index -> 0.09441489361702128
+Table Name IQ : Participation Index -> 0.0026595744680851063
+Table Name IR : Participation Index -> 0.6981382978723404
+Table Name IS : Participation Index -> 0.0
+Table Name IT : Participation Index -> 0.07180851063829788
+Table Name JK : Participation Index -> 0.052719665271966525
+Table Name JL : Participation Index -> 0.0008368200836820083
+Table Name JM : Participation Index -> 0.2125523012552301
+Table Name JN : Participation Index -> 0.10376569037656903
+Table Name JO : Participation Index -> 0.21171548117154812
+Table Name JP : Participation Index -> 0.059414225941422594
+Table Name JQ : Participation Index -> 0.0
+Table Name JR : Participation Index -> 0.42343096234309624
+Table Name JS : Participation Index -> 0.0
+Table Name JT : Participation Index -> 0.028451882845188285
+Table Name KL : Participation Index -> 0.0
+Table Name KM : Participation Index -> 0.7807017543859649
+Table Name KN : Participation Index -> 0.40594059405940597
+Table Name KO : Participation Index -> 0.2376237623762376
+Table Name KP : Participation Index -> 0.31683168316831684
+Table Name KQ : Participation Index -> 0.1188118811881188
+Table Name KR : Participation Index -> 0.5148514851485149
+Table Name KS : Participation Index -> 0.0
+Table Name KT : Participation Index -> 0.5544554455445545
+Table Name LM : Participation Index -> 0.13283208020050125
+Table Name LN : Participation Index -> 0.1111111111111111
+Table Name LO : Participation Index -> 0.286231884057971
+Table Name LP : Participation Index -> 0.015625
+Table Name LQ : Participation Index -> 0.02857142857142857
+Table Name LR : Participation Index -> 0.032939189189189186
+Table Name LS : Participation Index -> 0.0
+Table Name LT : Participation Index -> 0.12315270935960591
+Table Name MN : Participation Index -> 0.5526315789473685
+Table Name MO : Participation Index -> 0.07017543859649122
+Table Name MP : Participation Index -> 0.006265664160401002
+Table Name MQ : Participation Index -> 0.0037593984962406013
+Table Name MR : Participation Index -> 0.6979949874686717
+Table Name MS : Participation Index -> 0.0
+Table Name MT : Participation Index -> 0.046365914786967416
+Table Name NO : Participation Index -> 0.2898550724637681
+Table Name NP : Participation Index -> 0.0
+Table Name NQ : Participation Index -> 0.0
+Table Name NR : Participation Index -> 0.6934121621621622
+Table Name NS : Participation Index -> 0.0
+Table Name NT : Participation Index -> 0.11822660098522167
+Table Name OP : Participation Index -> 0.12681159420289856
+Table Name OQ : Participation Index -> 0.0
+Table Name OR : Participation Index -> 0.5471014492753623
+Table Name OS : Participation Index -> 0.0036231884057971015
+Table Name OT : Participation Index -> 0.29347826086956524
+Table Name PQ : Participation Index -> 0.0
+Table Name PR : Participation Index -> 0.7255067567567568
+Table Name PS : Participation Index -> 0.0
+Table Name PT : Participation Index -> 0.029556650246305417
+Table Name QR : Participation Index -> 0.40033783783783783
+Table Name QS : Participation Index -> 0.0
+Table Name QT : Participation Index -> 0.31527093596059114
+Table Name RS : Participation Index -> 0.0
+Table Name RT : Participation Index -> 0.010135135135135136
+Table Name ST : Participation Index -> 0.15763546798029557
+Joining BC and BI : New Colocation:BCI
+B
+Found Index-1
+Joining BC and BR : New Colocation:BCR
+B
+Found Index-1
+Joining BC and CI : New Colocation:BCI
+C
+Found Index0
+Joining BC and CM : New Colocation:BCM
+C
+Found Index-1
+Joining BC and CR : New Colocation:BCR
+C
+Found Index1
+Joining BI and BR : New Colocation:BIR
+B
+Found Index-1
+Joining BI and CI : New Colocation:BCI
+I
+Found Index0
+Joining BI and FI : New Colocation:BFI
+I
+Found Index-1
+Joining BI and IM : New Colocation:BIM
+I
+Found Index-1
+Joining BI and IN : New Colocation:BIN
+I
+Found Index-1
+Joining BI and IR : New Colocation:BIR
+I
+Found Index3
+Joining BR and CR : New Colocation:BCR
+R
+Found Index1
+Joining BR and HR : New Colocation:BHR
+R
+Found Index-1
+Joining BR and IR : New Colocation:BIR
+R
+Found Index3
+Joining BR and KR : New Colocation:BKR
+R
+Found Index-1
+Joining BR and MR : New Colocation:BMR
+R
+Found Index-1
+Joining BR and NR : New Colocation:BNR
+R
+Found Index-1
+Joining BR and OR : New Colocation:BOR
+R
+Found Index-1
+Joining BR and PR : New Colocation:BPR
+R
+Found Index-1
+Joining CI and CM : New Colocation:CIM
+C
+Found Index-1
+Joining CI and CR : New Colocation:CIR
+C
+Found Index-1
+Joining CI and FI : New Colocation:CFI
+I
+Found Index-1
+Joining CI and IM : New Colocation:CIM
+I
+Found Index13
+Joining CI and IN : New Colocation:CIN
+I
+Found Index-1
+Joining CI and IR : New Colocation:CIR
+I
+Found Index14
+Joining CM and CR : New Colocation:CMR
+C
+Found Index-1
+Joining CM and FM : New Colocation:CFM
+M
+Found Index-1
+Joining CM and IM : New Colocation:CIM
+M
+Found Index13
+Joining CM and KM : New Colocation:CKM
+M
+Found Index-1
+Joining CM and MN : New Colocation:CMN
+M
+Found Index-1
+Joining CM and MR : New Colocation:CMR
+M
+Found Index17
+Joining CR and HR : New Colocation:CHR
+R
+Found Index-1
+Joining CR and IR : New Colocation:CIR
+R
+Found Index14
+Joining CR and KR : New Colocation:CKR
+R
+Found Index-1
+Joining CR and MR : New Colocation:CMR
+R
+Found Index17
+Joining CR and NR : New Colocation:CNR
+R
+Found Index-1
+Joining CR and OR : New Colocation:COR
+R
+Found Index-1
+Joining CR and PR : New Colocation:CPR
+R
+Found Index-1
+Joining DO and OR : New Colocation:DOR
+O
+Found Index-1
+Joining FI and FJ : New Colocation:FIJ
+F
+Found Index-1
+Joining FI and FM : New Colocation:FIM
+F
+Found Index-1
+Joining FI and IM : New Colocation:FIM
+I
+Found Index28
+Joining FI and IN : New Colocation:FIN
+I
+Found Index-1
+Joining FI and IR : New Colocation:FIR
+I
+Found Index-1
+Joining FJ and FM : New Colocation:FJM
+F
+Found Index-1
+Joining FM and IM : New Colocation:FIM
+M
+Found Index28
+Joining FM and KM : New Colocation:FKM
+M
+Found Index-1
+Joining FM and MN : New Colocation:FMN
+M
+Found Index-1
+Joining FM and MR : New Colocation:FMR
+M
+Found Index-1
+Joining HR and IR : New Colocation:HIR
+R
+Found Index-1
+Joining HR and KR : New Colocation:HKR
+R
+Found Index-1
+Joining HR and MR : New Colocation:HMR
+R
+Found Index-1
+Joining HR and NR : New Colocation:HNR
+R
+Found Index-1
+Joining HR and OR : New Colocation:HOR
+R
+Found Index-1
+Joining HR and PR : New Colocation:HPR
+R
+Found Index-1
+Joining IM and IN : New Colocation:IMN
+I
+Found Index-1
+Joining IM and IR : New Colocation:IMR
+I
+Found Index-1
+Joining IM and KM : New Colocation:IKM
+M
+Found Index-1
+Joining IM and MN : New Colocation:IMN
+M
+Found Index41
+Joining IM and MR : New Colocation:IMR
+M
+Found Index42
+Joining IN and IR : New Colocation:INR
+I
+Found Index-1
+Joining IN and MN : New Colocation:IMN
+N
+Found Index41
+Joining IN and NR : New Colocation:INR
+N
+Found Index44
+Joining IR and KR : New Colocation:IKR
+R
+Found Index-1
+Joining IR and MR : New Colocation:IMR
+R
+Found Index42
+Joining IR and NR : New Colocation:INR
+R
+Found Index44
+Joining IR and OR : New Colocation:IOR
+R
+Found Index-1
+Joining IR and PR : New Colocation:IPR
+R
+Found Index-1
+Joining KM and KR : New Colocation:KMR
+K
+Found Index-1
+Joining KM and KT : New Colocation:KMT
+K
+Found Index-1
+Joining KM and MN : New Colocation:KMN
+M
+Found Index-1
+Joining KM and MR : New Colocation:KMR
+M
+Found Index48
+Joining KR and KT : New Colocation:KRT
+K
+Found Index-1
+Joining KR and MR : New Colocation:KMR
+R
+Found Index48
+Joining KR and NR : New Colocation:KNR
+R
+Found Index-1
+Joining KR and OR : New Colocation:KOR
+R
+Found Index-1
+Joining KR and PR : New Colocation:KPR
+R
+Found Index-1
+Joining MN and MR : New Colocation:MNR
+M
+Found Index-1
+Joining MN and NR : New Colocation:MNR
+N
+Found Index55
+Joining MR and NR : New Colocation:MNR
+R
+Found Index55
+Joining MR and OR : New Colocation:MOR
+R
+Found Index-1
+Joining MR and PR : New Colocation:MPR
+R
+Found Index-1
+Joining NR and OR : New Colocation:NOR
+R
+Found Index-1
+Joining NR and PR : New Colocation:NPR
+R
+Found Index-1
+Joining OR and PR : New Colocation:OPR
+R
+Found Index-1
+Table Name BCI : Participation Index -> 0.9852941176470589
+Table Name BCR : Participation Index -> 0.684640522875817
+Table Name BCM : Participation Index -> 0.9505409582689336
+Table Name BIR : Participation Index -> 0.6813725490196079
+Table Name BFI : Participation Index -> 0.5478723404255319
+Table Name BIM : Participation Index -> 0.9840425531914894
+Table Name BIN : Participation Index -> 0.5026595744680851
+Table Name BHR : Participation Index -> 0.4223856209150327
+Table Name BKR : Participation Index -> 0.5148514851485149
+Table Name BMR : Participation Index -> 0.684640522875817
+Table Name BNR : Participation Index -> 0.5
+Table Name BOR : Participation Index -> 0.5471014492753623
+Table Name BPR : Participation Index -> 0.5424836601307189
+Table Name CIM : Participation Index -> 0.9505409582689336
+Table Name CIR : Participation Index -> 0.7527047913446677
+Table Name CFI : Participation Index -> 0.5455950540958269
+Table Name CIN : Participation Index -> 0.5013297872340425
+Table Name CMR : Participation Index -> 0.723338485316847
+Table Name CFM : Participation Index -> 0.5316846986089645
+Table Name CKM : Participation Index -> 0.7781954887218046
+Table Name CMN : Participation Index -> 0.5526315789473685
+Table Name CHR : Participation Index -> 0.41112828438948995
+Table Name CKR : Participation Index -> 0.5148514851485149
+Table Name CNR : Participation Index -> 0.5316846986089645
+Table Name COR : Participation Index -> 0.5471014492753623
+Table Name CPR : Participation Index -> 0.6182380216383307
+Table Name DOR : Participation Index -> 0.2644927536231884
+Table Name FIJ : Participation Index -> 0.5412234042553191
+Table Name FIM : Participation Index -> 0.5478723404255319
+Table Name FIN : Participation Index -> 0.2726063829787234
+Table Name FIR : Participation Index -> 0.30851063829787234
+Table Name FJM : Participation Index -> 0.6553884711779449
+Table Name FKM : Participation Index -> 0.5839598997493735
+Table Name FMN : Participation Index -> 0.36967418546365916
+Table Name FMR : Participation Index -> 0.40225563909774437
+Table Name HIR : Participation Index -> 0.3803191489361702
+Table Name HKR : Participation Index -> 0.27722772277227725
+Table Name HMR : Participation Index -> 0.44862155388471175
+Table Name HNR : Participation Index -> 0.5033783783783784
+Table Name HOR : Participation Index -> 0.21739130434782608
+Table Name HPR : Participation Index -> 0.4543918918918919
+Table Name IMN : Participation Index -> 0.4973404255319149
+Table Name IMR : Participation Index -> 0.6888297872340425
+Table Name IKM : Participation Index -> 0.7794486215538847
+Table Name INR : Participation Index -> 0.4162234042553192
+Table Name IKR : Participation Index -> 0.5148514851485149
+Table Name IOR : Participation Index -> 0.5434782608695652
+Table Name IPR : Participation Index -> 0.5638297872340425
+Table Name KMR : Participation Index -> 0.5148514851485149
+Table Name KMT : Participation Index -> 0.5544554455445545
+Table Name KMN : Participation Index -> 0.4348370927318296
+Table Name KRT : Participation Index -> 0.2871287128712871
+Table Name KNR : Participation Index -> 0.36633663366336633
+Table Name KOR : Participation Index -> 0.4231418918918919
+Table Name KPR : Participation Index -> 0.40594059405940597
+Table Name MNR : Participation Index -> 0.44110275689223055
+Table Name MOR : Participation Index -> 0.5471014492753623
+Table Name MPR : Participation Index -> 0.5601503759398496
+Table Name NOR : Participation Index -> 0.3188405797101449
+Table Name NPR : Participation Index -> 0.4983108108108108
+Table Name OPR : Participation Index -> 0.3007246376811594
+Joining BCI and BCR : New Colocation:BCIR
+['B', 'C']
+Found Index-1
+Joining BCI and BCM : New Colocation:BCIM
+['B', 'C']
+Found Index-1
+Joining BCI and BIR : New Colocation:BCIR
+['B', 'I']
+Found Index0
+Joining BCI and BFI : New Colocation:BCFI
+['B', 'I']
+Found Index-1
+Joining BCI and BIM : New Colocation:BCIM
+['B', 'I']
+Found Index1
+Joining BCI and BIN : New Colocation:BCIN
+['B', 'I']
+Found Index-1
+Joining BCI and CIM : New Colocation:BCIM
+['C', 'I']
+Found Index1
+Joining BCI and CIR : New Colocation:BCIR
+['C', 'I']
+Found Index0
+Joining BCI and CFI : New Colocation:BCFI
+['C', 'I']
+Found Index2
+Joining BCI and CIN : New Colocation:BCIN
+['C', 'I']
+Found Index3
+Joining BCR and BCM : New Colocation:BCMR
+['B', 'C']
+Found Index-1
+Joining BCR and BIR : New Colocation:BCIR
+['B', 'R']
+Found Index0
+Joining BCR and BKR : New Colocation:BCKR
+['B', 'R']
+Found Index-1
+Joining BCR and BMR : New Colocation:BCMR
+['B', 'R']
+Found Index4
+Joining BCR and BNR : New Colocation:BCNR
+['B', 'R']
+Found Index-1
+Joining BCR and BOR : New Colocation:BCOR
+['B', 'R']
+Found Index-1
+Joining BCR and BPR : New Colocation:BCPR
+['B', 'R']
+Found Index-1
+Joining BCR and CIR : New Colocation:BCIR
+['C', 'R']
+Found Index0
+Joining BCR and CMR : New Colocation:BCMR
+['C', 'R']
+Found Index4
+Joining BCR and CKR : New Colocation:BCKR
+['C', 'R']
+Found Index5
+Joining BCR and CNR : New Colocation:BCNR
+['C', 'R']
+Found Index6
+Joining BCR and COR : New Colocation:BCOR
+['C', 'R']
+Found Index7
+Joining BCR and CPR : New Colocation:BCPR
+['C', 'R']
+Found Index8
+Joining BCM and BIM : New Colocation:BCIM
+['B', 'M']
+Found Index1
+Joining BCM and BMR : New Colocation:BCMR
+['B', 'M']
+Found Index4
+Joining BCM and CIM : New Colocation:BCIM
+['C', 'M']
+Found Index1
+Joining BCM and CMR : New Colocation:BCMR
+['C', 'M']
+Found Index4
+Joining BCM and CFM : New Colocation:BCFM
+['C', 'M']
+Found Index-1
+Joining BCM and CKM : New Colocation:BCKM
+['C', 'M']
+Found Index-1
+Joining BCM and CMN : New Colocation:BCMN
+['C', 'M']
+Found Index-1
+Joining BIR and BFI : New Colocation:BFIR
+['B', 'I']
+Found Index-1
+Joining BIR and BIM : New Colocation:BIMR
+['B', 'I']
+Found Index-1
+Joining BIR and BIN : New Colocation:BINR
+['B', 'I']
+Found Index-1
+Joining BIR and BKR : New Colocation:BIKR
+['B', 'R']
+Found Index-1
+Joining BIR and BMR : New Colocation:BIMR
+['B', 'R']
+Found Index13
+Joining BIR and BNR : New Colocation:BINR
+['B', 'R']
+Found Index14
+Joining BIR and BOR : New Colocation:BIOR
+['B', 'R']
+Found Index-1
+Joining BIR and BPR : New Colocation:BIPR
+['B', 'R']
+Found Index-1
+Joining BIR and CIR : New Colocation:BCIR
+['I', 'R']
+Found Index0
+Joining BIR and IMR : New Colocation:BIMR
+['I', 'R']
+Found Index13
+Joining BIR and IKR : New Colocation:BIKR
+['I', 'R']
+Found Index15
+Joining BIR and IOR : New Colocation:BIOR
+['I', 'R']
+Found Index16
+Joining BIR and IPR : New Colocation:BIPR
+['I', 'R']
+Found Index17
+Joining BFI and BIM : New Colocation:BFIM
+['B', 'I']
+Found Index-1
+Joining BFI and BIN : New Colocation:BFIN
+['B', 'I']
+Found Index-1
+Joining BFI and CFI : New Colocation:BCFI
+['F', 'I']
+Found Index2
+Joining BFI and FIJ : New Colocation:BFIJ
+['F', 'I']
+Found Index-1
+Joining BFI and FIM : New Colocation:BFIM
+['F', 'I']
+Found Index18
+Joining BIM and BIN : New Colocation:BIMN
+['B', 'I']
+Found Index-1
+Joining BIM and BMR : New Colocation:BIMR
+['B', 'M']
+Found Index13
+Joining BIM and CIM : New Colocation:BCIM
+['I', 'M']
+Found Index1
+Joining BIM and FIM : New Colocation:BFIM
+['I', 'M']
+Found Index18
+Joining BIM and IMR : New Colocation:BIMR
+['I', 'M']
+Found Index13
+Joining BIM and IKM : New Colocation:BIKM
+['I', 'M']
+Found Index-1
+Joining BIN and BNR : New Colocation:BINR
+['B', 'N']
+Found Index14
+Joining BIN and CIN : New Colocation:BCIN
+['I', 'N']
+Found Index3
+Joining BKR and BMR : New Colocation:BKMR
+['B', 'R']
+Found Index-1
+Joining BKR and BNR : New Colocation:BKNR
+['B', 'R']
+Found Index-1
+Joining BKR and BOR : New Colocation:BKOR
+['B', 'R']
+Found Index-1
+Joining BKR and BPR : New Colocation:BKPR
+['B', 'R']
+Found Index-1
+Joining BKR and CKR : New Colocation:BCKR
+['K', 'R']
+Found Index5
+Joining BKR and IKR : New Colocation:BIKR
+['K', 'R']
+Found Index15
+Joining BKR and KMR : New Colocation:BKMR
+['K', 'R']
+Found Index23
+Joining BMR and BNR : New Colocation:BMNR
+['B', 'R']
+Found Index-1
+Joining BMR and BOR : New Colocation:BMOR
+['B', 'R']
+Found Index-1
+Joining BMR and BPR : New Colocation:BMPR
+['B', 'R']
+Found Index-1
+Joining BMR and CMR : New Colocation:BCMR
+['M', 'R']
+Found Index4
+Joining BMR and IMR : New Colocation:BIMR
+['M', 'R']
+Found Index13
+Joining BMR and KMR : New Colocation:BKMR
+['M', 'R']
+Found Index23
+Joining BMR and MOR : New Colocation:BMOR
+['M', 'R']
+Found Index28
+Joining BMR and MPR : New Colocation:BMPR
+['M', 'R']
+Found Index29
+Joining BNR and BOR : New Colocation:BNOR
+['B', 'R']
+Found Index-1
+Joining BNR and BPR : New Colocation:BNPR
+['B', 'R']
+Found Index-1
+Joining BNR and CNR : New Colocation:BCNR
+['N', 'R']
+Found Index6
+Joining BNR and HNR : New Colocation:BHNR
+['N', 'R']
+Found Index-1
+Joining BOR and BPR : New Colocation:BOPR
+['B', 'R']
+Found Index-1
+Joining BOR and COR : New Colocation:BCOR
+['O', 'R']
+Found Index7
+Joining BOR and IOR : New Colocation:BIOR
+['O', 'R']
+Found Index16
+Joining BOR and MOR : New Colocation:BMOR
+['O', 'R']
+Found Index28
+Joining BPR and CPR : New Colocation:BCPR
+['P', 'R']
+Found Index8
+Joining BPR and IPR : New Colocation:BIPR
+['P', 'R']
+Found Index17
+Joining BPR and MPR : New Colocation:BMPR
+['P', 'R']
+Found Index29
+Joining CIM and CIR : New Colocation:CIMR
+['C', 'I']
+Found Index-1
+Joining CIM and CFI : New Colocation:CFIM
+['C', 'I']
+Found Index-1
+Joining CIM and CIN : New Colocation:CIMN
+['C', 'I']
+Found Index-1
+Joining CIM and CMR : New Colocation:CIMR
+['C', 'M']
+Found Index34
+Joining CIM and CFM : New Colocation:CFIM
+['C', 'M']
+Found Index35
+Joining CIM and CKM : New Colocation:CIKM
+['C', 'M']
+Found Index-1
+Joining CIM and CMN : New Colocation:CIMN
+['C', 'M']
+Found Index36
+Joining CIM and FIM : New Colocation:CFIM
+['I', 'M']
+Found Index35
+Joining CIM and IMR : New Colocation:CIMR
+['I', 'M']
+Found Index34
+Joining CIM and IKM : New Colocation:CIKM
+['I', 'M']
+Found Index37
+Joining CIR and CFI : New Colocation:CFIR
+['C', 'I']
+Found Index-1
+Joining CIR and CIN : New Colocation:CINR
+['C', 'I']
+Found Index-1
+Joining CIR and CMR : New Colocation:CIMR
+['C', 'R']
+Found Index34
+Joining CIR and CKR : New Colocation:CIKR
+['C', 'R']
+Found Index-1
+Joining CIR and CNR : New Colocation:CINR
+['C', 'R']
+Found Index39
+Joining CIR and COR : New Colocation:CIOR
+['C', 'R']
+Found Index-1
+Joining CIR and CPR : New Colocation:CIPR
+['C', 'R']
+Found Index-1
+Joining CIR and IMR : New Colocation:CIMR
+['I', 'R']
+Found Index34
+Joining CIR and IKR : New Colocation:CIKR
+['I', 'R']
+Found Index40
+Joining CIR and IOR : New Colocation:CIOR
+['I', 'R']
+Found Index41
+Joining CIR and IPR : New Colocation:CIPR
+['I', 'R']
+Found Index42
+Joining CFI and CIN : New Colocation:CFIN
+['C', 'I']
+Found Index-1
+Joining CFI and CFM : New Colocation:CFIM
+['C', 'F']
+Found Index35
+Joining CFI and FIJ : New Colocation:CFIJ
+['F', 'I']
+Found Index-1
+Joining CFI and FIM : New Colocation:CFIM
+['F', 'I']
+Found Index35
+Joining CIN and CMN : New Colocation:CIMN
+['C', 'N']
+Found Index36
+Joining CIN and CNR : New Colocation:CINR
+['C', 'N']
+Found Index39
+Joining CMR and CFM : New Colocation:CFMR
+['C', 'M']
+Found Index-1
+Joining CMR and CKM : New Colocation:CKMR
+['C', 'M']
+Found Index-1
+Joining CMR and CMN : New Colocation:CMNR
+['C', 'M']
+Found Index-1
+Joining CMR and CKR : New Colocation:CKMR
+['C', 'R']
+Found Index46
+Joining CMR and CNR : New Colocation:CMNR
+['C', 'R']
+Found Index47
+Joining CMR and COR : New Colocation:CMOR
+['C', 'R']
+Found Index-1
+Joining CMR and CPR : New Colocation:CMPR
+['C', 'R']
+Found Index-1
+Joining CMR and IMR : New Colocation:CIMR
+['M', 'R']
+Found Index34
+Joining CMR and KMR : New Colocation:CKMR
+['M', 'R']
+Found Index46
+Joining CMR and MOR : New Colocation:CMOR
+['M', 'R']
+Found Index48
+Joining CMR and MPR : New Colocation:CMPR
+['M', 'R']
+Found Index49
+Joining CFM and CKM : New Colocation:CFKM
+['C', 'M']
+Found Index-1
+Joining CFM and CMN : New Colocation:CFMN
+['C', 'M']
+Found Index-1
+Joining CFM and FIM : New Colocation:CFIM
+['F', 'M']
+Found Index35
+Joining CFM and FJM : New Colocation:CFJM
+['F', 'M']
+Found Index-1
+Joining CFM and FKM : New Colocation:CFKM
+['F', 'M']
+Found Index50
+Joining CKM and CMN : New Colocation:CKMN
+['C', 'M']
+Found Index-1
+Joining CKM and CKR : New Colocation:CKMR
+['C', 'K']
+Found Index46
+Joining CKM and FKM : New Colocation:CFKM
+['K', 'M']
+Found Index50
+Joining CKM and IKM : New Colocation:CIKM
+['K', 'M']
+Found Index37
+Joining CKM and KMR : New Colocation:CKMR
+['K', 'M']
+Found Index46
+Joining CKM and KMT : New Colocation:CKMT
+['K', 'M']
+Found Index-1
+Joining CMN and CNR : New Colocation:CMNR
+['C', 'N']
+Found Index47
+Joining CKR and CNR : New Colocation:CKNR
+['C', 'R']
+Found Index-1
+Joining CKR and COR : New Colocation:CKOR
+['C', 'R']
+Found Index-1
+Joining CKR and CPR : New Colocation:CKPR
+['C', 'R']
+Found Index-1
+Joining CKR and IKR : New Colocation:CIKR
+['K', 'R']
+Found Index40
+Joining CKR and KMR : New Colocation:CKMR
+['K', 'R']
+Found Index46
+Joining CNR and COR : New Colocation:CNOR
+['C', 'R']
+Found Index-1
+Joining CNR and CPR : New Colocation:CNPR
+['C', 'R']
+Found Index-1
+Joining CNR and HNR : New Colocation:CHNR
+['N', 'R']
+Found Index-1
+Joining COR and CPR : New Colocation:COPR
+['C', 'R']
+Found Index-1
+Joining COR and IOR : New Colocation:CIOR
+['O', 'R']
+Found Index41
+Joining COR and MOR : New Colocation:CMOR
+['O', 'R']
+Found Index48
+Joining CPR and IPR : New Colocation:CIPR
+['P', 'R']
+Found Index42
+Joining CPR and MPR : New Colocation:CMPR
+['P', 'R']
+Found Index49
+Joining FIJ and FIM : New Colocation:FIJM
+['F', 'I']
+Found Index-1
+Joining FIJ and FJM : New Colocation:FIJM
+['F', 'J']
+Found Index62
+Joining FIM and FJM : New Colocation:FIJM
+['F', 'M']
+Found Index62
+Joining FIM and FKM : New Colocation:FIKM
+['F', 'M']
+Found Index-1
+Joining FIM and IMR : New Colocation:FIMR
+['I', 'M']
+Found Index-1
+Joining FIM and IKM : New Colocation:FIKM
+['I', 'M']
+Found Index63
+Joining FJM and FKM : New Colocation:FJKM
+['F', 'M']
+Found Index-1
+Joining FKM and IKM : New Colocation:FIKM
+['K', 'M']
+Found Index63
+Joining FKM and KMR : New Colocation:FKMR
+['K', 'M']
+Found Index-1
+Joining FKM and KMT : New Colocation:FKMT
+['K', 'M']
+Found Index-1
+Joining IMR and IKM : New Colocation:IKMR
+['I', 'M']
+Found Index-1
+Joining IMR and IKR : New Colocation:IKMR
+['I', 'R']
+Found Index68
+Joining IMR and IOR : New Colocation:IMOR
+['I', 'R']
+Found Index-1
+Joining IMR and IPR : New Colocation:IMPR
+['I', 'R']
+Found Index-1
+Joining IMR and KMR : New Colocation:IKMR
+['M', 'R']
+Found Index68
+Joining IMR and MOR : New Colocation:IMOR
+['M', 'R']
+Found Index69
+Joining IMR and MPR : New Colocation:IMPR
+['M', 'R']
+Found Index70
+Joining IKM and IKR : New Colocation:IKMR
+['I', 'K']
+Found Index68
+Joining IKM and KMR : New Colocation:IKMR
+['K', 'M']
+Found Index68
+Joining IKM and KMT : New Colocation:IKMT
+['K', 'M']
+Found Index-1
+Joining IKR and IOR : New Colocation:IKOR
+['I', 'R']
+Found Index-1
+Joining IKR and IPR : New Colocation:IKPR
+['I', 'R']
+Found Index-1
+Joining IKR and KMR : New Colocation:IKMR
+['K', 'R']
+Found Index68
+Joining IOR and IPR : New Colocation:IOPR
+['I', 'R']
+Found Index-1
+Joining IOR and MOR : New Colocation:IMOR
+['O', 'R']
+Found Index69
+Joining IPR and MPR : New Colocation:IMPR
+['P', 'R']
+Found Index70
+Joining KMR and KMT : New Colocation:KMRT
+['K', 'M']
+Found Index-1
+Joining KMR and MOR : New Colocation:KMOR
+['M', 'R']
+Found Index-1
+Joining KMR and MPR : New Colocation:KMPR
+['M', 'R']
+Found Index-1
+Joining MOR and MPR : New Colocation:MOPR
+['M', 'R']
+Found Index-1
+Table Name BCIR : Participation Index -> 0.6781045751633987
+Table Name BCIM : Participation Index -> 0.9474497681607419
+Table Name BCFI : Participation Index -> 0.5478723404255319
+Table Name BCIN : Participation Index -> 0.5026595744680851
+Table Name BCMR : Participation Index -> 0.6821895424836601
+Table Name BCKR : Participation Index -> 0.5148514851485149
+Table Name BCNR : Participation Index -> 0.49754901960784315
+Table Name BCOR : Participation Index -> 0.5471014492753623
+Table Name BCPR : Participation Index -> 0.5416666666666666
+Table Name BCFM : Participation Index -> 0.5316846986089645
+Table Name BCKM : Participation Index -> 0.7781954887218046
+Table Name BCMN : Participation Index -> 0.5526315789473685
+Table Name BFIR : Participation Index -> 0.4526143790849673
+Table Name BIMR : Participation Index -> 0.6805555555555556
+Table Name BINR : Participation Index -> 0.4853723404255319
+Table Name BIKR : Participation Index -> 0.5148514851485149
+Table Name BIOR : Participation Index -> 0.5471014492753623
+Table Name BIPR : Participation Index -> 0.5375816993464052
+Table Name BFIM : Participation Index -> 0.5478723404255319
+Table Name BFIN : Participation Index -> 0.2726063829787234
+Table Name BFIJ : Participation Index -> 0.5412234042553191
+Table Name BIMN : Participation Index -> 0.4973404255319149
+Table Name BIKM : Participation Index -> 0.7794486215538847
+Table Name BKMR : Participation Index -> 0.5148514851485149
+Table Name BKNR : Participation Index -> 0.36633663366336633
+Table Name BKOR : Participation Index -> 0.4222972972972973
+Table Name BKPR : Participation Index -> 0.40594059405940597
+Table Name BMNR : Participation Index -> 0.4959150326797386
+Table Name BMOR : Participation Index -> 0.5471014492753623
+Table Name BMPR : Participation Index -> 0.5392156862745098
+Table Name BNOR : Participation Index -> 0.3188405797101449
+Table Name BNPR : Participation Index -> 0.4199346405228758
+Table Name BHNR : Participation Index -> 0.32516339869281047
+Table Name BOPR : Participation Index -> 0.3007246376811594
+Table Name CIMR : Participation Index -> 0.7171561051004637
+Table Name CFIM : Participation Index -> 0.5455950540958269
+Table Name CIMN : Participation Index -> 0.5013297872340425
+Table Name CIKM : Participation Index -> 0.7781954887218046
+Table Name CFIR : Participation Index -> 0.357032457496136
+Table Name CINR : Participation Index -> 0.4720744680851064
+Table Name CIKR : Participation Index -> 0.5148514851485149
+Table Name CIOR : Participation Index -> 0.5471014492753623
+Table Name CIPR : Participation Index -> 0.6182380216383307
+Table Name CFIN : Participation Index -> 0.2712765957446808
+Table Name CFIJ : Participation Index -> 0.5301391035548686
+Table Name CFMR : Participation Index -> 0.3508500772797527
+Table Name CKMR : Participation Index -> 0.60741885625966
+Table Name CMNR : Participation Index -> 0.5150375939849624
+Table Name CMOR : Participation Index -> 0.5471014492753623
+Table Name CMPR : Participation Index -> 0.5935085007727975
+Table Name CFKM : Participation Index -> 0.5162287480680062
+Table Name CFMN : Participation Index -> 0.36967418546365916
+Table Name CFJM : Participation Index -> 0.5162287480680062
+Table Name CKMN : Participation Index -> 0.4348370927318296
+Table Name CKMT : Participation Index -> 0.5544554455445545
+Table Name CKNR : Participation Index -> 0.36633663366336633
+Table Name CKOR : Participation Index -> 0.4231418918918919
+Table Name CKPR : Participation Index -> 0.40594059405940597
+Table Name CNOR : Participation Index -> 0.3188405797101449
+Table Name CNPR : Participation Index -> 0.46986089644513135
+Table Name CHNR : Participation Index -> 0.33075734157650694
+Table Name COPR : Participation Index -> 0.3007246376811594
+Table Name FIJM : Participation Index -> 0.5412234042553191
+Table Name FIKM : Participation Index -> 0.5412234042553191
+Table Name FIMR : Participation Index -> 0.30851063829787234
+Table Name FJKM : Participation Index -> 0.5839598997493735
+Table Name FKMR : Participation Index -> 0.37623762376237624
+Table Name FKMT : Participation Index -> 0.42574257425742573
+Table Name IKMR : Participation Index -> 0.6023936170212766
+Table Name IMOR : Participation Index -> 0.5434782608695652
+Table Name IMPR : Participation Index -> 0.5558510638297872
+Table Name IKMT : Participation Index -> 0.5544554455445545
+Table Name IKOR : Participation Index -> 0.4222972972972973
+Table Name IKPR : Participation Index -> 0.40594059405940597
+Table Name IOPR : Participation Index -> 0.3007246376811594
+Table Name KMRT : Participation Index -> 0.2871287128712871
+Table Name KMOR : Participation Index -> 0.4197635135135135
+Table Name KMPR : Participation Index -> 0.3659147869674185
+Table Name MOPR : Participation Index -> 0.3007246376811594
+Joining BCIR and BCIM : New Colocation:BCIMR
+['B', 'C', 'I']
+Found Index-1
+Joining BCIR and BCFI : New Colocation:BCFIR
+['B', 'C', 'I']
+Found Index-1
+Joining BCIR and BCIN : New Colocation:BCINR
+['B', 'C', 'I']
+Found Index-1
+Joining BCIR and BCMR : New Colocation:BCIMR
+['B', 'C', 'R']
+Found Index0
+Joining BCIR and BCKR : New Colocation:BCIKR
+['B', 'C', 'R']
+Found Index-1
+Joining BCIR and BCOR : New Colocation:BCIOR
+['B', 'C', 'R']
+Found Index-1
+Joining BCIR and BCPR : New Colocation:BCIPR
+['B', 'C', 'R']
+Found Index-1
+Joining BCIR and BIMR : New Colocation:BCIMR
+['B', 'I', 'R']
+Found Index0
+Joining BCIR and BIKR : New Colocation:BCIKR
+['B', 'I', 'R']
+Found Index3
+Joining BCIR and BIOR : New Colocation:BCIOR
+['B', 'I', 'R']
+Found Index4
+Joining BCIR and BIPR : New Colocation:BCIPR
+['B', 'I', 'R']
+Found Index5
+Joining BCIR and CIMR : New Colocation:BCIMR
+['C', 'I', 'R']
+Found Index0
+Joining BCIR and CIKR : New Colocation:BCIKR
+['C', 'I', 'R']
+Found Index3
+Joining BCIR and CIOR : New Colocation:BCIOR
+['C', 'I', 'R']
+Found Index4
+Joining BCIR and CIPR : New Colocation:BCIPR
+['C', 'I', 'R']
+Found Index5
+Joining BCIM and BCFI : New Colocation:BCFIM
+['B', 'C', 'I']
+Found Index-1
+Joining BCIM and BCIN : New Colocation:BCIMN
+['B', 'C', 'I']
+Found Index-1
+Joining BCIM and BCMR : New Colocation:BCIMR
+['B', 'C', 'M']
+Found Index0
+Joining BCIM and BCFM : New Colocation:BCFIM
+['B', 'C', 'M']
+Found Index6
+Joining BCIM and BCKM : New Colocation:BCIKM
+['B', 'C', 'M']
+Found Index-1
+Joining BCIM and BCMN : New Colocation:BCIMN
+['B', 'C', 'M']
+Found Index7
+Joining BCIM and BIMR : New Colocation:BCIMR
+['B', 'I', 'M']
+Found Index0
+Joining BCIM and BFIM : New Colocation:BCFIM
+['B', 'I', 'M']
+Found Index6
+Joining BCIM and BIKM : New Colocation:BCIKM
+['B', 'I', 'M']
+Found Index8
+Joining BCIM and CIMR : New Colocation:BCIMR
+['C', 'I', 'M']
+Found Index0
+Joining BCIM and CFIM : New Colocation:BCFIM
+['C', 'I', 'M']
+Found Index6
+Joining BCIM and CIMN : New Colocation:BCIMN
+['C', 'I', 'M']
+Found Index7
+Joining BCIM and CIKM : New Colocation:BCIKM
+['C', 'I', 'M']
+Found Index8
+Joining BCFI and BCIN : New Colocation:BCFIN
+['B', 'C', 'I']
+Found Index-1
+Joining BCFI and BCFM : New Colocation:BCFIM
+['B', 'C', 'F']
+Found Index6
+Joining BCFI and BFIM : New Colocation:BCFIM
+['B', 'F', 'I']
+Found Index6
+Joining BCFI and BFIJ : New Colocation:BCFIJ
+['B', 'F', 'I']
+Found Index-1
+Joining BCFI and CFIM : New Colocation:BCFIM
+['C', 'F', 'I']
+Found Index6
+Joining BCFI and CFIJ : New Colocation:BCFIJ
+['C', 'F', 'I']
+Found Index10
+Joining BCIN and BCMN : New Colocation:BCIMN
+['B', 'C', 'N']
+Found Index7
+Joining BCIN and CIMN : New Colocation:BCIMN
+['C', 'I', 'N']
+Found Index7
+Joining BCMR and BCKR : New Colocation:BCKMR
+['B', 'C', 'R']
+Found Index-1
+Joining BCMR and BCOR : New Colocation:BCMOR
+['B', 'C', 'R']
+Found Index-1
+Joining BCMR and BCPR : New Colocation:BCMPR
+['B', 'C', 'R']
+Found Index-1
+Joining BCMR and BCFM : New Colocation:BCFMR
+['B', 'C', 'M']
+Found Index-1
+Joining BCMR and BCKM : New Colocation:BCKMR
+['B', 'C', 'M']
+Found Index11
+Joining BCMR and BCMN : New Colocation:BCMNR
+['B', 'C', 'M']
+Found Index-1
+Joining BCMR and BIMR : New Colocation:BCIMR
+['B', 'M', 'R']
+Found Index0
+Joining BCMR and BKMR : New Colocation:BCKMR
+['B', 'M', 'R']
+Found Index11
+Joining BCMR and BMOR : New Colocation:BCMOR
+['B', 'M', 'R']
+Found Index12
+Joining BCMR and BMPR : New Colocation:BCMPR
+['B', 'M', 'R']
+Found Index13
+Joining BCMR and CIMR : New Colocation:BCIMR
+['C', 'M', 'R']
+Found Index0

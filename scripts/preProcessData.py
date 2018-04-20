@@ -21,7 +21,6 @@ def readParams(configFile):
                 params = [param.replace('"', '').strip()
                           for param in line.split(',')]
 
-                #featureName = os.path.basename(params[0]).split('.')[0]
                 paramList.append(params)
 
         print('Done')
@@ -31,7 +30,6 @@ def readParams(configFile):
 
 def processRawData(outFileName, paramList):
     """Process the raw files based in the params."""
-
     rawDataFrame1 = pd.DataFrame()
 
     for params in paramList:
