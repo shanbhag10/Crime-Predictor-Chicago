@@ -19,8 +19,8 @@ def readParams(configFile):
                 firstLine = False
             else:
                 params = [param.replace('"', '').strip()
-                        for param in line.split(',')]
-                
+                          for param in line.split(',')]
+
                 #featureName = os.path.basename(params[0]).split('.')[0]
                 paramList.append(params)
 
@@ -31,43 +31,43 @@ def readParams(configFile):
 
 def processRawData(outFileName, paramList):
     """Process the raw files based in the params."""
-    
-    rawDataFrame1=pd.DataFrame()
-    
+
+    rawDataFrame1 = pd.DataFrame()
+
     for params in paramList:
         inName = params[0]
         key = params[1]
         colKey = params[2]
         lat = params[3]
         lon = params[4]
-        
+
         print('Processing raw file: {}'.format(inName), end=', ')
         print()
-        
 
         featureName = os.path.basename(inName).split('.')[0]
-        
+
         rawDataFrame = pd.read_csv(inName)
 
         rawDataFrame.columns = [col.strip() for col in rawDataFrame.columns]
         if colKey != '' and key != '':
             rawDataFrame = rawDataFrame.loc[rawDataFrame[colKey] == key]
             featureName = key
-       
-        
+
         rawDataFrame = rawDataFrame[[lat, lon]]
-        rawDataFrame.rename(columns={lat:'LATITUDE',lon:'LONGITUDE'},inplace = True)
+        rawDataFrame.rename(
+            columns={lat: 'LATITUDE', lon: 'LONGITUDE'}, inplace=True)
         rawDataFrame['FEATURE'] = featureName
-        rawDataFrame['INSTANCE'] = range(len(rawDataFrame1)+1,len(rawDataFrame1)+len(rawDataFrame)+1)
-        rawDataFrame1= rawDataFrame1.append(rawDataFrame)
+        rawDataFrame['INSTANCE'] = range(
+            len(rawDataFrame1) + 1, len(rawDataFrame1) + len(rawDataFrame) + 1)
+        rawDataFrame1 = rawDataFrame1.append(rawDataFrame)
 
-	rawDataFrame1 = rawDataFrame1[['INSTANCE','LATITUDE','LONGITUDE','FEATURE']]
+        rawDataFrame1 = rawDataFrame1[[
+            'INSTANCE', 'LATITUDE', 'LONGITUDE', 'FEATURE']]
 
-    rawDataFrame1.to_csv(outFileName,header=False, index=False)    
+    rawDataFrame1.to_csv(outFileName, header=False, index=False)
     print('Done')
 
     return outFileName
-
 
 
 def generateMainConfigFile(outputFeatures, outConfig):
@@ -87,12 +87,9 @@ def main():
     outConfig = sys.argv[2]
     outFile = readParams(configFile)[0]
     paramList = readParams(configFile)[1]
-    features = processRawData(outFile,paramList)
+    features = processRawData(outFile, paramList)
     generateMainConfigFile(features, outConfig)
 
 
 if __name__ == '__main__':
     main()
-
-
-
