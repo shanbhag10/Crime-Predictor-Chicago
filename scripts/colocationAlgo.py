@@ -16,7 +16,9 @@ featureMap = {}
 candidateFeatures = []
 tableInstances = []
 total_num_instances = {}
+count_tables = {}
 colocationRules = []
+coLocations = []
 distThreshold = None
 colocationMap = {}
 
@@ -38,6 +40,7 @@ class Table(object):
         # self.id = Table.newId()
         self.record = record  # DataFrame
         self.participation_idx = 1
+        count_tables[colocationName] = len(record.index)
 
     def set_participation_idx(self, participation_idx, prevalence_threshold):
         """Set the participation Index."""
@@ -247,6 +250,9 @@ def longest_common_substring(string1, string2):
 
     return "".join(lcs)
 
+def subsequences(string,n):
+  return [string[i:i+n] for i in range (len(string)-n+1)]
+
 
 def isValidCandidate(tableA, tableB, size):
     """Check if by merging two colocation tables we can create new."""
@@ -309,8 +315,12 @@ def calculatePrevalence(size, prevalence_threshold):
         features = tableInstances[size-1][i].record.columns.values.tolist()
         number_of_instances = [len(np.unique(tableInstances[size-1][i].record[f].values)) for f in features]
         participation_ratios = [float(number_of_instances[index])/total_num_instances[f] for index, f in enumerate(features)]
+        if tableInstances[size-1][i].name == 'IM':
+            print(number_of_instances)
+            print(total_num_instances)
         participation_idx = min(participation_ratios)
         tableInstances[size-1][i].set_participation_idx(participation_idx, prevalence_threshold)
+        count_tables[tableInstances[size-1][i].name] = len(tableInstances[size-1][i].record.index)
         print('Table Name {} : Participation Index -> {}'.format(tableInstances[size-1][i].name, participation_idx))
 
 
@@ -326,7 +336,7 @@ def initializeColocation(prevalence_threshold):
                                  featureMap[feature]].values
         total_num_instances[featureMap[feature]] = len(rowIds)
         records = pd.DataFrame(data=rowIds, columns=[feature])
-        table = Table(feature, records)
+        table = Table(featureMap[feature], records)
         initial_tables_1.append(table)
 
     tableInstances.append(initial_tables_1)
@@ -342,9 +352,25 @@ def initializeColocation(prevalence_threshold):
 def generateColocationRules(size):
     """Generate the co-location rules."""
     global colocationRules
+    global coLocations
     for i in range(0, len(tableInstances[size])):
         if tableInstances[size][i].prevalence:
-            colocationRules.append(tableInstances[size][i].name)
+            substrings = []
+            for j in range(len(tableInstances[size][i].name)):
+                s = subsequences(tableInstances[size][i].name, j)
+                substrings.append(s)
+            flat_substrings_list = [item for sublist in substrings for item in sublist]
+            flat_substrings_list = list(filter(None, flat_substrings_list))
+            for sub_str in flat_substrings_list:
+                if sub_str not in count_tables or count_tables[sub_str] == 0:
+                    continue
+                rule_name = sub_str + '->' + tableInstances[size][i].name.replace(sub_str, "")
+                conditional_probability = (float)(len(tableInstances[size][i].record[list(sub_str)].drop_duplicates().index)) / count_tables[sub_str]
+                rule = {}
+                rule[rule_name] = conditional_probability
+                colocationRules.append(rule)
+
+            coLocations.append(tableInstances[size][i].name)
 
 
 def colocationMinerAlgo(prevalence_threshold):
@@ -402,7 +428,7 @@ def main():
     # Value that determines the prevalence index
     prevIndexThres = [0.35, 0.4, 0.45]
     # Other configurations
-    usePickle = False
+    usePickle = True
     qgisFiles = False
     # Pickle file name
     distancePickle = '../data/pickle/small_dist100.pickle'
@@ -423,7 +449,9 @@ def main():
 
     for idx in prevIndexThres:
         colocationMinerAlgo(idx)
-        print(colocationRules)
+        print('Colocated Features: {}'.format(coLocations))
+        print('Colocation Rules: {}'.format(colocationRules))
+
 
     print('Total time Taken {}'.format(time()-mainStart))
 
