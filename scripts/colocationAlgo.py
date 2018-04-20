@@ -53,7 +53,7 @@ class Table(object):
     __repr__ = __str__
 
 
-def readParams(configFile, outputFile):
+def readParams(configFile):
     """Read commandline parameters and parse the config file."""
     with open(configFile, 'r') as configFileHandle:
         print('Reading config file :{}'.format(configFile), end=', ')
@@ -386,10 +386,9 @@ def main():
     global colocationMap
 
     if len(sys.argv) < 3:
-        print('Please pass the parameters <CONFIG_FILE> <OUTPUT_FILE>')
+        print('Please pass the parameters <CONFIG_FILE>')
         sys.exit(-1)
     configFile = sys.argv[1]
-    outputFile = sys.argv[2]
 
     # Value that determines the neighbor relation
     distThreshold = 0.15
@@ -399,7 +398,12 @@ def main():
     usePickle = False
     qgisFiles = False
 
-    featuresFile = readParams(configFile, outputFile)
+    print('######### CONFIGURATION #########')
+    print('Distance Threshold: {}'.format(distThreshold))
+    print('Prevalence Index: {}'.format(prevIndexThres))
+    print('#################################')
+
+    featuresFile = readParams(configFile)
     loadmainDF(featuresFile)
 
     if not usePickle:
