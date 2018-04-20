@@ -366,6 +366,8 @@ def generateColocationRules(size):
                     continue
                 rule_name = sub_str + '->' + tableInstances[size][i].name.replace(sub_str, "")
                 conditional_probability = (float)(len(tableInstances[size][i].record[list(sub_str)].drop_duplicates().index)) / count_tables[sub_str]
+                if conditional_probability > 1:
+                    continue
                 rule = {}
                 rule[rule_name] = conditional_probability
                 colocationRules.append(rule)
@@ -426,12 +428,12 @@ def main():
     # Value that determines the neighbor relation
     distThreshold = 0.5
     # Value that determines the prevalence index
-    prevIndexThres = [0.35, 0.4, 0.45]
+    prevIndexThres = [0.80]
     # Other configurations
     usePickle = True
     qgisFiles = False
     # Pickle file name
-    distancePickle = '../data/pickle/small_dist100.pickle'
+    distancePickle = '../data/pickle/dist45.pickle'
 
     print('######### CONFIGURATION #########')
     print('Distance Threshold: {}'.format(distThreshold))
