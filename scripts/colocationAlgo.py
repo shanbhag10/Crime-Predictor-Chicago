@@ -25,6 +25,8 @@ currLong = None
 
 tableList = []
 
+distancePickle = None
+
 
 class Table(object):
     """Datastructure to save colocation."""
@@ -316,6 +318,8 @@ def initializeColocation(prevalence_threshold):
     """Initialize Colocation."""
     global featureMap
     global colocationMap
+    global distancePickle
+
     initial_tables_1 = []
     for feature in featureMap:
         rowIds = mainDF['rowId'][mainDF['feature'] ==
@@ -326,7 +330,7 @@ def initializeColocation(prevalence_threshold):
         initial_tables_1.append(table)
 
     tableInstances.append(initial_tables_1)
-    with open('entry.pickle', 'rb') as f:
+    with open(distancePickle, 'rb') as f:
         initial_tables_2 = pickle.load(f)
 
     tableInstances.append(initial_tables_2)
@@ -384,6 +388,7 @@ def main():
     """Initialize everything and run the algorithm."""
     global distThreshold
     global colocationMap
+    global distancePickle
 
     mainStart = time()
 
@@ -395,10 +400,12 @@ def main():
     # Value that determines the neighbor relation
     distThreshold = 0.15
     # Value that determines the prevalence index
-    prevIndexThres = 0.5
+    prevIndexThres = 0.6
     # Other configurations
     usePickle = False
     qgisFiles = False
+    # Pickle file name
+    distancePickle = '../data/pickle/dist15.pickle'
 
     print('######### CONFIGURATION #########')
     print('Distance Threshold: {}'.format(distThreshold))
@@ -411,7 +418,7 @@ def main():
     if not usePickle:
         createColocationMap(featureMap)
 
-        with open('entry.pickle', 'wb') as pickleHandle:
+        with open(distancePickle, 'wb') as pickleHandle:
             pickle.dump(colocationMap[2], pickleHandle)
 
     colocationMinerAlgo(prevIndexThres)
