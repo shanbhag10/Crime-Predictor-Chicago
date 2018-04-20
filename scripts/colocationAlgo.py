@@ -156,7 +156,7 @@ def createColocationMap(featuresMap):
                 index = row['rowId']
 
                 latUp = row['lat'] + 0.00725
-                latLow = row['lat'] - 0.00725
+                latLow = row['lat'] -  0.00725
                 longUp = row['long'] + 0.00725
                 longLow = row['long'] - 0.00725
 
@@ -398,14 +398,14 @@ def main():
     configFile = sys.argv[1]
 
     # Value that determines the neighbor relation
-    distThreshold = 0.15
+    distThreshold = 0.5
     # Value that determines the prevalence index
-    prevIndexThres = 0.6
+    prevIndexThres = [0.35, 0.4, 0.45]
     # Other configurations
     usePickle = False
     qgisFiles = False
     # Pickle file name
-    distancePickle = '../data/pickle/dist15.pickle'
+    distancePickle = '../data/pickle/small_dist100.pickle'
 
     print('######### CONFIGURATION #########')
     print('Distance Threshold: {}'.format(distThreshold))
@@ -421,8 +421,9 @@ def main():
         with open(distancePickle, 'wb') as pickleHandle:
             pickle.dump(colocationMap[2], pickleHandle)
 
-    colocationMinerAlgo(prevIndexThres)
-    print(colocationRules)
+    for idx in prevIndexThres:
+        colocationMinerAlgo(idx)
+        print(colocationRules)
 
     print('Total time Taken {}'.format(time()-mainStart))
 
