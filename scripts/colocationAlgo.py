@@ -159,7 +159,7 @@ def createColocationMap(featuresMap):
                 index = row['rowId']
 
                 latUp = row['lat'] + 0.00725
-                latLow = row['lat'] -  0.00725
+                latLow = row['lat'] - 0.00725
                 longUp = row['long'] + 0.00725
                 longLow = row['long'] - 0.00725
 
@@ -250,8 +250,10 @@ def longest_common_substring(string1, string2):
 
     return "".join(lcs)
 
-def subsequences(string,n):
-  return [string[i:i+n] for i in range (len(string)-n+1)]
+
+def subsequences(string, n):
+    """Compute the subsequnces."""
+    return [string[i:i+n] for i in range(len(string)-n+1)]
 
 
 def isValidCandidate(tableA, tableB, size):
@@ -369,7 +371,7 @@ def generateColocationRules(size):
                 if conditional_probability > 1:
                     continue
                 rule = {}
-                rule[rule_name] = conditional_probability
+                rule[rule_name] = round(conditional_probability, 3)
                 colocationRules.append(rule)
 
             coLocations.append(tableInstances[size][i].name)
@@ -397,7 +399,9 @@ def createQGISFiles():
             if table.prevalence:
                 features = list(table.name)
                 for index, row in table.record.iterrows():
-                    if index > 10:
+                    if index % 30 != 0:
+                        continue
+                    if index > 1000:
                         break
                     for f in features:
                         curRow = []
@@ -426,12 +430,12 @@ def main():
     configFile = sys.argv[1]
 
     # Value that determines the neighbor relation
-    distThreshold = 0.5
+    distThreshold = 0.45
     # Value that determines the prevalence index
-    prevIndexThres = [0.80]
+    prevIndexThres = 0.80
     # Other configurations
     usePickle = True
-    qgisFiles = False
+    qgisFiles = True
     # Pickle file name
     distancePickle = '../data/pickle/dist45.pickle'
 
@@ -449,11 +453,9 @@ def main():
         with open(distancePickle, 'wb') as pickleHandle:
             pickle.dump(colocationMap[2], pickleHandle)
 
-    for idx in prevIndexThres:
-        colocationMinerAlgo(idx)
-        print('Colocated Features: {}'.format(coLocations))
-        print('Colocation Rules: {}'.format(colocationRules))
-
+    colocationMinerAlgo(prevIndexThres)
+    print('Colocated Features: {}'.format(coLocations))
+    print('Colocation Rules: {}'.format(colocationRules))
 
     print('Total time Taken {}'.format(time()-mainStart))
 
