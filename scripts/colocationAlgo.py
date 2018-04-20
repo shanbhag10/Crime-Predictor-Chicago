@@ -12,7 +12,7 @@ from tabulate import tabulate
 from time import time
 
 mainDF = None
-fileFeatureMap = {}
+featureMap = {}
 candidateFeatures = []
 tableInstances = []
 total_num_instances = {}
@@ -64,13 +64,13 @@ def readParams(configFile, outputFile):
 
 def mapFeatures(featuresList):
     """Map file names to Alphabet for short dictionary keys."""
-    global fileFeatureMap
+    global featureMap
     global mainDF
 
     print('\nFeature --> Shortname')
     for num, feature in enumerate(featuresList):
         alphabet = chr(65 + num)
-        fileFeatureMap[feature] = alphabet
+        featureMap[feature] = alphabet
         cnt = len(mainDF[mainDF['feature'] == feature].index)
         print('{} --> {}: {}'.format(feature, alphabet, cnt))
     print('\n')
@@ -79,10 +79,10 @@ def mapFeatures(featuresList):
 def loadmainDF(featuresFile):
     """Generate the features map."""
     global mainDF
-    global fileFeatureMap
+    global featureMap
 
     # Add column name
-    columns = ['row_id', 'lat', 'long', 'feature']
+    columns = ['rowId', 'lat', 'long', 'feature']
     mainDF = pd.read_csv(featuresFile, names=columns)
     featuresList = sorted(list(set(mainDF['feature'])))
 
@@ -91,7 +91,7 @@ def loadmainDF(featuresFile):
 
     # Map feature to Alphabet for all the records
     mainDF['feature'] = mainDF['feature'].apply(
-        lambda x: fileFeatureMap[x])
+        lambda x: featureMap[x])
 
     print('Total {} records'.format(len(mainDF.index)))
 
@@ -127,7 +127,7 @@ def createColocationMap(featuresMap):
 
     colocationMap[2] = []
 
-    features = [_ for _ in fileFeatureMap.values()]
+    features = [_ for _ in featureMap.values()]
     featureCount = len(features)
 
     for idx1 in range(featureCount):
@@ -151,7 +151,7 @@ def createColocationMap(featuresMap):
 
             for _, row in cR.iterrows():
                 currLat, currLong = row['lat'], row['long']
-                index = row['row_id']
+                index = row['rowId']
 
                 latUp = row['lat'] + 0.00725
                 latLow = row['lat'] - 0.00725
@@ -180,7 +180,7 @@ def createColocationMap(featuresMap):
                 for idx, res in enumerate(results):
                     if res:
                         tempRowInsts.append(
-                            [index, oR.iloc[idx]['row_id']])
+                            [index, oR.iloc[idx]['rowId']])
                 oR = copyOR
 
                 processed += 1
@@ -306,7 +306,7 @@ def calculatePrevalence(size, prevalence_threshold):
     for i in range(0, len(tableInstances[size-1])):
         features = tableInstances[size-1][i].record.columns.values.tolist()
         number_of_instances = [len(np.unique(tableInstances[size-1][i].record[f].values)) for f in features]
-        participation_ratios = [ float(number_of_instances[index])/total_num_instances[f] for index, f in enumerate(features)]
+        participation_ratios = [float(number_of_instances[index])/total_num_instances[f] for index, f in enumerate(features)]
         participation_idx = min(participation_ratios)
         tableInstances[size-1][i].set_participation_idx(participation_idx, prevalence_threshold)
         print('Table Name {} : Participation Index -> {}'.format(tableInstances[size-1][i].name, participation_idx))
@@ -314,13 +314,14 @@ def calculatePrevalence(size, prevalence_threshold):
 
 def initializeColocation(prevalence_threshold):
     """Initialize Colocation."""
-    global fileFeatureMap
+    global featureMap
     global colocationMap
     initial_tables_1 = []
-    for feature in fileFeatureMap:
-        transactionIds = mainDF['row_id'][mainDF['feature'] == fileFeatureMap[feature]].values
-        total_num_instances[fileFeatureMap[feature]] = len(transactionIds)
-        records = pd.DataFrame(data=transactionIds, columns=[feature])
+    for feature in featureMap:
+        rowIds = mainDF['rowId'][mainDF['feature'] ==
+                                 featureMap[feature]].values
+        total_num_instances[featureMap[feature]] = len(rowIds)
+        records = pd.DataFrame(data=rowIds, columns=[feature])
         table = Table(feature, records)
         initial_tables_1.append(table)
 
@@ -346,7 +347,7 @@ def colocationMinerAlgo(prevalence_threshold):
     """Run the Colocation Miner Algorithm."""
     initializeColocation(prevalence_threshold)
     previousColocation = True
-    for k in range(3, len(fileFeatureMap)):
+    for k in range(3, len(featureMap)):
         if previousColocation:
             createCandidates(k-1)
             calculatePrevalence(k, prevalence_threshold)
@@ -367,11 +368,13 @@ def createQGISFiles():
                     if index > 10:
                         break
                     for f in features:
-                        current_row = []
-                        current_row.append(mainDF['lat'][mainDF['row_id'] == row[f]].values[0])
-                        current_row.append(mainDF['long'][mainDF['row_id'] == row[f]].values[0])
-                        current_row.append(index+1)
-                        rows.append(current_row)
+                        curRow = []
+                        curRow.append(mainDF['lat'][mainDF['rowId'] == row[f]]
+                                      .values[0])
+                        curRow.append(mainDF['long'][mainDF['rowId'] == row[f]]
+                                      .values[0])
+                        curRow.append(index+1)
+                        rows.append(curRow)
 
                 df = pd.DataFrame(rows, columns=['Lat', 'Long', 'group'])
                 df.to_csv('../data/output/' + table.name + '.csv')
@@ -400,7 +403,7 @@ def main():
     loadmainDF(featuresFile)
 
     if not usePickle:
-        createColocationMap(fileFeatureMap)
+        createColocationMap(featureMap)
 
         with open('entry.pickle', 'wb') as pickleHandle:
             pickle.dump(colocationMap[2], pickleHandle)
