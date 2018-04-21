@@ -47,12 +47,12 @@ Create a file <MAIN_PROCESS_FILENAME>.config in the config directory with the na
 
 Example Content:
 
-``../data/input/test_crime.csv
+``../data/input/allFeatures.csv
 ``
 
 Please make sure that the file above only has a UID, latitude, longitude and Feature values for each record for the corresponding feature in a new line
 
-Example input file content: ../data/input/test_crime.csv
+Example input file content: ../data/input/allFeatures.csv
 
 1,41.86922,-87.66249,bars<br>
 2,41.86923,-87.66249,bars<br>
