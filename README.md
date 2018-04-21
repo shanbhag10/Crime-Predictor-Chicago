@@ -2,10 +2,10 @@
 
 ## Pre-requisites
 
-* PyPy3 Interpreter: Installation steps can be found [here](https://pypy.org/download.html)
-* Third party PyPy3 / Python modules
+* Third party Python modules
   * [panadas](https://pandas.pydata.org/pandas-docs/stable/install.html)
-
+  * [numpy](https://pypi.org/project/numpy/)
+  * [tabulate](https://pypi.org/project/tabulate/)
 
 ## STEP 1: Clone the repository
 
@@ -25,7 +25,8 @@ Example:
 
 The structure of <PRE_PROCESS_FILE>.config is as follows
 
-``<RAW_FILE_PATH>,<PROCESSED_FILE_PATH>,<ROW_FILTER_KEY>,<COL_NAME_HAVING_THE_FILTER_KEY>,<COL_NAME_FOR_LATITUDE>,<COL_NAME_FOR_LONGITUDE>``
+First Line: ``<OUTPUT_FILE_FOR_MAIN_ALGO>``
+Second Line``<RAW_FILE_PATH>,<ROW_FILTER_KEY>,<COL_NAME_HAVING_THE_FILTER_KEY>,<COL_NAME_FOR_LATITUDE>,<COL_NAME_FOR_LONGITUDE>``
 
 For multiple files put each entry on a new line
 
@@ -33,38 +34,38 @@ For multiple files put each entry on a new line
 
 Example content:
 
-../data/overlap/crime.csv,../data/input/homicide.csv,HOMICIDE,PRIMARY DESCRIPTION,LATITUDE,LONGITUDE<br>
-../data/overlap/bars.csv,../data/input/bars.csv,,,LATITUDE,LONGITUDE<br>
-../data/overlap/church.csv,../data/input/church.csv,,,"LAT","LONG"<br>
-../data/overlap/library.csv,../data/input/library.csv,,,LAT,LONG<br>
-../data/overlap/school.csv,../data/input/school.csv,,,Lat,Long<br>
-../data/overlap/police.csv,../data/input/police.csv,,,LATITUDE,LONGITUDE<br>
+../data/overlap/crime.csv,HOMICIDE,PRIMARY DESCRIPTION,LATITUDE,LONGITUDE<br>
+../data/overlap/bars.csv,,,LATITUDE,LONGITUDE<br>
+../data/overlap/church.csv,,,"LAT","LONG"<br>
+../data/overlap/library.csv,,,LAT,LONG<br>
+../data/overlap/school.csv,,,Lat,Long<br>
+../data/overlap/police.csv,,,LATITUDE,LONGITUDE<br>
 
-## STEP 4: Create the <MAIN_PROCESS_FILENAME> [ONLY IF Pre prossing step is skipped]
+## STEP 4: Create the <MAIN_PROCESS_FILENAME> [ONLY IF Pre processing step is skipped]
 
-Create a file <MAIN_PROCESS_FILENAME>.config in the config directory with the names of clean input files separated by ','
+Create a file <MAIN_PROCESS_FILENAME>.config in the config directory with the names of clean combined input file separated by ','
 
 Example Content:
 
-``../data/input/test_crime.csv,../data/input/test_bar.csv,../data/input/test_school.csv
+``../data/input/allFeatures.csv
 ``
 
-Please make sure that the file above only have the latitude and longitude values for each record for the corresponding feature in a new line
+Please make sure that the file above only has a UID, latitude, longitude and Feature values for each record for the corresponding feature in a new line
 
-Example input file content: ../data/input/test_crime.csv
+Example input file content: ../data/input/allFeatures.csv
 
-41.86922,-87.66249<br>
-41.86923,-87.66249<br>
-41.86921,-87.66248<br>
-41.86923,-87.66248<br>
-41.86920,-87.66247
+1,41.86922,-87.66249,bars<br>
+2,41.86923,-87.66249,bars<br>
+3,41.86921,-87.66248,school<br>
+4,41.86923,-87.66248,school<br>
+5,41.86920,-87.66247,police
 
 ## STEP 5: Run the Main algorithm
 
 Run the following command
 
-``pypy3 colocationAlgo.py ../config/<MAIN_PROCESS_FILENAME>.config ../data/output/<OUTPUT_FILE_NAME>.txt``
+``python3 colocationAlgo.py ../config/<MAIN_PROCESS_FILENAME>.config > ../data/output/<OUTPUT_FILE_NAME>.txt``
 
 Example:
 
-``pypy3 colocationAlgo.py ../config/main.config ../data/output.txt``
+``python3 colocationAlgo.py ../config/main.config > ../data/output.txt``
