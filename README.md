@@ -34,6 +34,7 @@ For multiple files put each entry on a new line
 
 Example content:
 
+../data/input/allFeatures.csv
 ../data/overlap/crime.csv,HOMICIDE,PRIMARY DESCRIPTION,LATITUDE,LONGITUDE<br>
 ../data/overlap/bars.csv,,,LATITUDE,LONGITUDE<br>
 ../data/overlap/church.csv,,,"LAT","LONG"<br>
